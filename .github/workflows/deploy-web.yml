@@ -19,7 +19,7 @@ jobs:
 
       - uses: actions/setup-java@v3
         with:
-#          distribution: 'zulu'
+          distribution: 'zulu'
 #          java-version: "12.x"
           cache: gradle
 
@@ -59,20 +59,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./
-
-
-#
-#      - run: |
-#          cd build/web
-#          git init
-#          # 改成你的提交邮箱
-##          git config --global user.email 99265253+jackeyvan@users.noreply.github.com
-#          # 改成你的提交用户名
-##          git config --global user.name jackeyvan
-#          git status
-#          # https://github.com/jackeyvan/flutter_wan_android.git
-#          git remote add origin https://$GH_TOKEN@github.com/jackeyvan/flutter_wan_android.git
-#          git checkout -b gh-pages
-#          git add --all
-#          git commit -m "update"
-#          git push origin gh-pages -f
