@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  postgres:
+    image: postgres:14.1
+    ports:
+      - '8090:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: wan_android
+      POSTGRES_PASSWORD: "tikFfsavEiU0I7-u7F_CheIQ_EvR_-rD"
+    volumes:
+      - wan_android_data:/var/lib/postgresql/data
+  redis:
+    image: redis:6.2.6
+    ports:
+      - '8091:6379'
+    command: redis-server --requirepass "mtImFRqI0y8T8zAVIgxnbCsUUbmjXpYK"
+    environment:
+      - REDIS_REPLICATION_MODE=master
+volumes:
+  wan_android_data:
