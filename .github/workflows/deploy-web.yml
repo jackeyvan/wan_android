@@ -12,7 +12,6 @@ jobs:
     env:
       # 使用Github自动生成的令牌
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      working-directory: wan_android_flutter
 
     steps:
       - uses: actions/checkout@v3
@@ -34,12 +33,14 @@ jobs:
 
       - name: Start Web Release Build
         run: flutter build web --release
+        working-directory: wan_android_flutter
 
       - name: Upload Web Build Files
         uses: actions/upload-artifact@v2
         with:
           name: web-release
           path: ./build/web
+          working-directory: wan_android_flutter
 
   deploy:
     name: Deploy WanAndroid Web
