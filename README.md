@@ -18,4 +18,14 @@
 
 ### 更新Endpoint
 
-- `serverpod generate`
+- 生成代码
+
+  - `serverpod generate`
+
+- 创建数据库表
+
+  - `serverpod create-migration`
+
+- 更新数据库后重启服务
+
+  - `dart bin/main.dart --apply-migrations --role=maintenance`
