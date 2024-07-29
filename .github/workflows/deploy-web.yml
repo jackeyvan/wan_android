@@ -1,0 +1,66 @@
+name: WanAndroid Web
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    name: Build WanAndroid Web
+    env:
+      # 使用Github自动生成的令牌
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: stable
+          cache: true
+      # 按照下面的顺序执行打包命令
+      - run: flutter config --enable-web
+      - run: flutter pub get
+#      - run: flutter channel master
+#      - run: flutter upgrade
+      - run: flutter build web --release
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: web-release
+          path: ./build/web
+
+  deploy:
+    name: Deploy WanAndroid Web
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Download Web Release
+        uses: actions/download-artifact@v2
+        with:
+          name: web-release
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
+
+
+#
+#      - run: |
+#          cd build/web
+#          git init
+#          # 改成你的提交邮箱
+##          git config --global user.email 99265253+jackeyvan@users.noreply.github.com
+#          # 改成你的提交用户名
+##          git config --global user.name jackeyvan
+#          git status
+#          # https://github.com/jackeyvan/flutter_wan_android.git
+#          git remote add origin https://$GH_TOKEN@github.com/jackeyvan/flutter_wan_android.git
+#          git checkout -b gh-pages
+#          git add --all
+#          git commit -m "update"
+#          git push origin gh-pages -f

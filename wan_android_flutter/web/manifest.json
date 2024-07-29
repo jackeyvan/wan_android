@@ -1,11 +1,11 @@
 {
-    "name": "wan_android_flutter",
-    "short_name": "wan_android_flutter",
+    "name": "flutter_wan_android",
+    "short_name": "flutter_wan_android",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "玩安卓Flutter版本。",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

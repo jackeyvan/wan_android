@@ -8,6 +8,7 @@
 .buildlog/
 .history
 .svn/
+migrate_working_dir/
 
 # IntelliJ related
 *.iml
@@ -26,15 +27,12 @@
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
-.packages
 .pub-cache/
 .pub/
 /build/
+pubspec.lock
 
-# Web related
-lib/generated_plugin_registrant.dart
-
-# Symbolization related
+# Symbolication related
 app.*.symbols
 
 # Obfuscation related
@@ -45,4 +43,4 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-pubspec.lock
+/test
