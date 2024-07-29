@@ -1,13 +1,16 @@
+import 'package:http/http.dart' as http;
+import 'package:serverpod/protocol.dart';
 import 'package:serverpod/serverpod.dart';
 import 'package:wan_android_server/src/web/routes/root.dart';
 
-import 'src/future_calls/example_future_call.dart';
+import 'src/future_calls/wan_android_schedule.dart';
 import 'src/generated/endpoints.dart';
-import 'src/generated/protocol.dart';
 
 // This is the starting point of your Serverpod server. In most cases, you will
 // only need to make additions to this file if you add future calls,  are
 // configuring Relic (Serverpod's web-server), or need custom setup work.
+
+final httpClient = http.Client();
 
 void run(List<String> args) async {
   // Initialize Serverpod and connect it with your generated code.
@@ -29,9 +32,24 @@ void run(List<String> args) async {
     '/*',
   );
 
-  pod.registerFutureCall(ExampleFutureCall(), "futureCall");
-  pod.futureCallWithDelay("futureCall", null, Duration(seconds: 5));
+  schedule(pod);
 
   // Start the server.
   await pod.start();
+}
+
+///  定时调度
+void schedule(Serverpod pod) {
+  final scheduleName = "wan_android_schedule";
+
+  futureCall() =>
+      pod.futureCallWithDelay(scheduleName, null, Duration(seconds: 1));
+
+  /// 注册
+  pod.registerFutureCall(WanAndroidSchedule(), scheduleName);
+
+  /// 启动服务后立马调用一次
+  futureCall();
+
+  Stream.periodic(Duration(minutes: 3)).listen((e) => futureCall());
 }
