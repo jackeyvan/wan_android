@@ -30,6 +30,7 @@ jobs:
 
       - name: Get dependencies
         run: flutter pub get
+        working-directory: wan_android_flutter
 
       - name: Start Web Release Build
         run: flutter build web --release
