@@ -26,6 +26,21 @@ class EndpointExample extends _i1.EndpointRef {
       );
 }
 
+/// {@category Endpoint}
+class EndpointWan extends _i1.EndpointRef {
+  EndpointWan(_i1.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'wan';
+
+  _i2.Future<String> helloWorld(String name) =>
+      caller.callServerEndpoint<String>(
+        'wan',
+        'helloWorld',
+        {'name': name},
+      );
+}
+
 class Client extends _i1.ServerpodClient {
   Client(
     String host, {
@@ -50,12 +65,18 @@ class Client extends _i1.ServerpodClient {
           onSucceededCall: onSucceededCall,
         ) {
     example = EndpointExample(this);
+    wan = EndpointWan(this);
   }
 
   late final EndpointExample example;
 
+  late final EndpointWan wan;
+
   @override
-  Map<String, _i1.EndpointRef> get endpointRefLookup => {'example': example};
+  Map<String, _i1.EndpointRef> get endpointRefLookup => {
+        'example': example,
+        'wan': wan,
+      };
 
   @override
   Map<String, _i1.ModuleEndpointCaller> get moduleLookup => {};

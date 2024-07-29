@@ -1,6 +1,6 @@
-import 'package:wan_android_client/wan_android_client.dart';
 import 'package:flutter/material.dart';
 import 'package:serverpod_flutter/serverpod_flutter.dart';
+import 'package:wan_android_client/wan_android_client.dart';
 
 // Sets up a singleton client object that can be used to talk to the server from
 // anywhere in our app. The client is generated from your server code.
@@ -51,7 +51,7 @@ class MyHomePageState extends State<MyHomePage> {
   // is successful.
   void _callHello() async {
     try {
-      final result = await client.example.hello(_textEditingController.text);
+      final result = await client.wan.helloWorld(_textEditingController.text);
       setState(() {
         _errorMessage = null;
         _resultMessage = result;

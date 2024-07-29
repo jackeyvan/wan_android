@@ -11,21 +11,21 @@
 # Configuration for the main API server.
 apiServer:
   port: 8080
-  publicHost: api-staging.examplepod.com
+  publicHost: api-staging.wan.com
   publicPort: 443
   publicScheme: https
 
 # Configuration for the Insights server.
 insightsServer:
   port: 8081
-  publicHost: insights-staging.examplepod.com
+  publicHost: insights-staging.wan.com
   publicPort: 443
   publicScheme: https
 
 # Configuration for the web server.
 webServer:
   port: 8082
-  publicHost: app-staging.examplepod.com
+  publicHost: app-staging.wan.com
   publicPort: 443
   publicScheme: https
 
@@ -34,7 +34,7 @@ webServer:
 # If you are connecting on a public IP (e.g. on AWS or Google Cloud Run), you
 # connect on the public IP of the database e.g. database-staging.examplepod.com.
 database:
-  host: database.private-staging.examplepod.com
+  host: database.private-staging.wan.com
   port: 5432
   name: serverpod
   user: postgres
@@ -45,5 +45,5 @@ database:
 # connect on the public IP of the database e.g. redis-staging.examplepod.com.
 redis:
   enabled: false
-  host: redis.private-staging.examplepod.com
+  host: redis.private-staging.wan.com
   port: 6379
