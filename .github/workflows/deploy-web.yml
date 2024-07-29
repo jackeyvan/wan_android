@@ -1,4 +1,4 @@
-name: Deploy WanAndroid Web
+name: Deploy wanAndroid web
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: Build WanAndroid Web
+    name: Build wanAndroid web
     runs-on: ubuntu-latest
 
     env:
@@ -31,26 +31,25 @@ jobs:
         run: flutter pub get
         working-directory: wan_android_flutter
 
-      - name: Start Web Release Build
+      - name: Start web release build
         run: flutter build web --release
         working-directory: wan_android_flutter
 
-      - name: Upload Web Build Files
+      - name: Upload web build files
         uses: actions/upload-artifact@v2
         with:
           name: web-release
-          path: ./build/web
-          working-directory: wan_android_flutter
+          path: ./wan_android_flutter/build/web
 
   deploy:
-    name: Deploy WanAndroid Web
+    name: Deploy wanAndroid web
     needs: build
     runs-on: ubuntu-latest
     permissions:
       contents: write
 
     steps:
-      - name: Download Web Release
+      - name: Download web release
         uses: actions/download-artifact@v2
         with:
           name: web-release
