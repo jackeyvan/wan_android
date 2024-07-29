@@ -10,6 +10,8 @@ jobs:
     env:
       # 使用Github自动生成的令牌
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      working-directory: wan_android_flutter
+
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
