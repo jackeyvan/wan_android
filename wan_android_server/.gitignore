@@ -15,3 +15,5 @@ config/passwords.yaml
 config/firebase_service_account_key.json
 
 pubspec.lock
+
+migrations/

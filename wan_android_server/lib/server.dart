@@ -32,7 +32,7 @@ void run(List<String> args) async {
     '/*',
   );
 
-  schedule(pod);
+  // schedule(pod);
 
   // Start the server.
   await pod.start();
@@ -43,7 +43,7 @@ void schedule(Serverpod pod) {
   final scheduleName = "wan_android_schedule";
 
   futureCall() =>
-      pod.futureCallWithDelay(scheduleName, null, Duration(seconds: 1));
+      pod.futureCallWithDelay(scheduleName, null, Duration(seconds: 5));
 
   /// 注册
   pod.registerFutureCall(WanAndroidSchedule(), scheduleName);
