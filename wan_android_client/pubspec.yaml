@@ -6,3 +6,6 @@ environment:
 
 dependencies:
   serverpod_client: 2.0.2
+
+  wan_android_shared:
+    path: ../wan_android_shared
