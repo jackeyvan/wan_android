@@ -32,7 +32,7 @@ void run(List<String> args) async {
     '/*',
   );
 
-  // schedule(pod);
+  schedule(pod);
 
   // Start the server.
   await pod.start();
@@ -51,5 +51,5 @@ void schedule(Serverpod pod) {
   /// 启动服务后立马调用一次
   futureCall();
 
-  Stream.periodic(Duration(minutes: 3)).listen((e) => futureCall());
+  Stream.periodic(Duration(minutes: 10)).listen((e) => futureCall());
 }

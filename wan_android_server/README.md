@@ -28,8 +28,6 @@ Docker 方式启动 postgres、redis
     dart bin/main.dart --apply-migrations
 
 
-
-
 ### 更新Endpoint
 
 生成代码
@@ -39,8 +37,12 @@ Docker 方式启动 postgres、redis
 创建数据库表
 
     serverpod create-migration
-    serverpod create-migration  --force
 
+    serverpod create-migration --force
+
+    serverpod create-repair-migration --force
+
+    dart bin/main.dart --apply-repair-migration
 
 更新数据库后重启服务
 
