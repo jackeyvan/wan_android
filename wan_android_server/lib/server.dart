@@ -51,5 +51,5 @@ void schedule(Serverpod pod) {
   /// 启动服务后立马调用一次
   futureCall();
 
-  Stream.periodic(Duration(minutes: 10)).listen((e) => futureCall());
+  Stream.periodic(Duration(hours: 1)).listen((e) => futureCall());
 }

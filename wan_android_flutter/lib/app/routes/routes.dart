@@ -39,7 +39,7 @@ class Routes {
 
   static final routes = [
     GetPage(name: root, page: () => const RootPage()),
-    GetPage(name: test, page: () => const TestPage()),
+    GetPage(name: test, page: () => TestPage()),
     GetPage(
         name: articleDetail,
         page: () => const ArticleDetailPage(),

@@ -14,17 +14,24 @@ import 'package:wan_android_shared/src/api_response.dart' as _i3;
 import 'protocol.dart' as _i4;
 
 /// {@category Endpoint}
-class EndpointWan extends _i1.EndpointRef {
-  EndpointWan(_i1.EndpointCaller caller) : super(caller);
+class EndpointBanner extends _i1.EndpointRef {
+  EndpointBanner(_i1.EndpointCaller caller) : super(caller);
 
   @override
-  String get name => 'wan';
+  String get name => 'banner';
 
-  _i2.Future<_i3.ApiResponse> helloWorld(String name) =>
+  _i2.Future<_i3.ApiResponse> fetchBanner() =>
       caller.callServerEndpoint<_i3.ApiResponse>(
-        'wan',
-        'helloWorld',
-        {'name': name},
+        'banner',
+        'fetchBanner',
+        {},
+      );
+
+  _i2.Future<_i3.ApiResponse> insertBanner() =>
+      caller.callServerEndpoint<_i3.ApiResponse>(
+        'banner',
+        'insertBanner',
+        {},
       );
 }
 
@@ -51,13 +58,13 @@ class Client extends _i1.ServerpodClient {
           onFailedCall: onFailedCall,
           onSucceededCall: onSucceededCall,
         ) {
-    wan = EndpointWan(this);
+    banner = EndpointBanner(this);
   }
 
-  late final EndpointWan wan;
+  late final EndpointBanner banner;
 
   @override
-  Map<String, _i1.EndpointRef> get endpointRefLookup => {'wan': wan};
+  Map<String, _i1.EndpointRef> get endpointRefLookup => {'banner': banner};
 
   @override
   Map<String, _i1.ModuleEndpointCaller> get moduleLookup => {};

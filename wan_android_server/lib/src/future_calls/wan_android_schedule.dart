@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:http/http.dart';
 import 'package:serverpod/serverpod.dart';
-import 'package:wan_android_server/src/generated/banner_model.dart';
 import 'package:wan_android_server/src/models/wan_android_response.dart';
 
+import '../generated/protocol.dart';
 import 'wan_android_api.dart';
 
 final api = WanAndroidApi();
@@ -12,42 +12,26 @@ final api = WanAndroidApi();
 class WanAndroidSchedule extends FutureCall {
   @override
   Future<void> invoke(Session session, SerializableModel? object) async {
-    print("--------> WanAndroidSchedule 我被调用了");
+    print("WanAndroidSchedule: WanAndroidSchedule has bean invoke.");
 
     /// 定时请求三方数据并且保存到数据库
     /// 每天更新一次
-    try {
-      api.fetchBanner().then((response) {
-        final banners = _convert<List>(response)?.map((e) {
-          final banner = BannerModel.fromJson(e);
+    // fetchBanner(session);
 
-          BannerModel.db.insertRow(session, banner);
-        }).toList();
-
-        // print(banners);
-        //
-        // if (banners != null && banners.isNotEmpty) {
-        //   BannerModel.db.insert(session, banners);
-        // }
-      });
-    } catch (e) {
-      print(e.toString());
-    }
+    BannerModel.db.insert(session,
+        [BannerModel(title: "我是Banner标题1"), BannerModel(title: "我是Banner标题2")]);
   }
 
   fetchBanner(session) {
     api.fetchBanner().then((response) {
-      final banners = _convert<List>(response)?.map((e) {
-        final banner = BannerModel.fromJson(e);
-
-        BannerModel.db.insertRow(session, banner);
-      }).toList();
-
-      // print(banners);
-      //
-      // if (banners != null && banners.isNotEmpty) {
-      //   BannerModel.db.insert(session, banners);
-      // }
+      final banners = _convert<List>(response)
+          ?.map((e) => BannerModel.fromJson(e))
+          .toList();
+      if (banners != null && banners.isNotEmpty) {
+        BannerModel.db.insert(session, banners);
+      }
+    }).catchError((e, s) {
+      print("WanAndroidSchedule: fetchBanner happened a error.");
     });
   }
 

@@ -9,41 +9,41 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
-import '../endpoints/wan_endpoint.dart' as _i2;
+import '../endpoints/banner_endpoint.dart' as _i2;
 
 class Endpoints extends _i1.EndpointDispatch {
   @override
   void initializeEndpoints(_i1.Server server) {
     var endpoints = <String, _i1.Endpoint>{
-      'wan': _i2.WanEndpoint()
+      'banner': _i2.BannerEndpoint()
         ..initialize(
           server,
-          'wan',
+          'banner',
           null,
         )
     };
-    connectors['wan'] = _i1.EndpointConnector(
-      name: 'wan',
-      endpoint: endpoints['wan']!,
+    connectors['banner'] = _i1.EndpointConnector(
+      name: 'banner',
+      endpoint: endpoints['banner']!,
       methodConnectors: {
-        'helloWorld': _i1.MethodConnector(
-          name: 'helloWorld',
-          params: {
-            'name': _i1.ParameterDescription(
-              name: 'name',
-              type: _i1.getType<String>(),
-              nullable: false,
-            )
-          },
+        'fetchBanner': _i1.MethodConnector(
+          name: 'fetchBanner',
+          params: {},
           call: (
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['wan'] as _i2.WanEndpoint).helloWorld(
-            session,
-            params['name'],
-          ),
-        )
+              (endpoints['banner'] as _i2.BannerEndpoint).fetchBanner(session),
+        ),
+        'insertBanner': _i1.MethodConnector(
+          name: 'insertBanner',
+          params: {},
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['banner'] as _i2.BannerEndpoint).insertBanner(session),
+        ),
       },
     );
   }
