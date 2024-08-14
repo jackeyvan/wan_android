@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:serverpod_flutter/serverpod_flutter.dart';
-import 'package:wan_android_client/wan_android_client.dart';
 
-final client = Client('http://localhost:8080/')
-  ..connectivityMonitor = FlutterConnectivityMonitor();
+// final client = Client('http://localhost:8080/')
+//   ..connectivityMonitor = FlutterConnectivityMonitor();
 
 class TestPage extends StatefulWidget {
   const TestPage({super.key});
@@ -31,10 +29,10 @@ class _TestPageState extends State<TestPage> {
   }
 
   _loadData() {
-    client.banner.insertBanner().then((banner) {
-      setState(() {
-        result = banner.data?.toString() ?? "暂无数据";
-      });
-    });
+    // client.banner.insertBanner().then((banner) {
+    //   setState(() {
+    //     result = banner.data?.toString() ?? "暂无数据";
+    //   });
+    // });
   }
 }
