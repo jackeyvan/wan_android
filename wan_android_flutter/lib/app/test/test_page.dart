@@ -1,52 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:serverpod_flutter/serverpod_flutter.dart';
+import 'package:wan_android_client/wan_android_client.dart';
 
-class TestPage extends StatelessWidget {
+final client = Client('http://localhost:8080/')
+  ..connectivityMonitor = FlutterConnectivityMonitor();
+
+class TestPage extends StatefulWidget {
   const TestPage({super.key});
+
+  @override
+  State<TestPage> createState() => _TestPageState();
+}
+
+class _TestPageState extends State<TestPage> {
+  String result = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: NestedScrollView(
-        body: Container(
-          color: Colors.amber,
-          child: ListView.builder(
-              padding: const EdgeInsets.only(top: 0),
-              itemBuilder: (tx, index) {
-                return const Card(
-                  child: InkWell(
-                    child: ListTile(
-                        title: Text("我是大法师打发标题"),
-                        subtitle: Padding(
-                            padding: EdgeInsets.only(top: 6),
-                            child: Text(
-                              "wohaishi阿凡达还是发来发发呆",
-                              maxLines: 5,
-                            ))),
-                  ),
-                );
-              }),
-        ),
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return [
-            SliverAppBar(
-              // stretch: true,
-              pinned: true,
-              floating: true,
-              snap: true,
-              // leading: DrawerButton(),
-              expandedHeight: 200,
-              flexibleSpace: FlexibleSpaceBar(
-                title: const Text("玩安卓"),
-                centerTitle: false,
-                background: Image.network(
-                  'https://images.pexels.com/photos/443356/pexels-photo-443356.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-                  fit: BoxFit.cover,
-                ),
-              ),
-            )
-          ];
-        },
-      ),
-    );
+        appBar: AppBar(title: const Text("测试页面")),
+        body: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Column(children: [
+            ElevatedButton(
+                onPressed: () => _loadData(), child: const Text("请求")),
+            const SizedBox(height: 12),
+            Text(result),
+          ]),
+        ));
+  }
+
+  _loadData() {
+    client.banner.insertBanner().then((banner) {
+      setState(() {
+        result = banner.data?.toString() ?? "暂无数据";
+      });
+    });
   }
 }
