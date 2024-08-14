@@ -1,8 +1,0 @@
-type: server
-
-client_package_path: ../wan_android_client
-
-
-
-extraClasses:
-  - package:wan_android_shared/src/api_response.dart:ApiResponse

@@ -1,8 +1,0 @@
-
-class: ArticleModel
-
-table: article
-
-fields:
-  name: String
-  url: String?
