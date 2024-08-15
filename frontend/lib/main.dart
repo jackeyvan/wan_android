@@ -24,7 +24,7 @@ class WanApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialRoute: Routes.root,
+      initialRoute: Routes.test,
       initialBinding: AppBinding(),
       debugShowCheckedModeBanner: false,
       getPages: Routes.routes,
