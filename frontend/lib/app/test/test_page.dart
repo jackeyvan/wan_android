@@ -11,7 +11,7 @@ class TestPage extends StatefulWidget {
 }
 
 class _TestPageState extends State<TestPage> {
-  String url = 'http://127.0.0.1:8080/api/v1/films/';
+  String url = 'https://wan-android-backend-duywngg-jackeyvan.globeapp.dev/';
 
   Future<Response>? future;
 
