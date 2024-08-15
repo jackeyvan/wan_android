@@ -1,0 +1,3 @@
+
+
+# class Banner(BaseModel)
