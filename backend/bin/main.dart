@@ -13,7 +13,7 @@ void main(List<String> args) async {
   final handler = Pipeline()
       .addMiddleware(logRequests())
       .addMiddleware(rejectBadRequests())
-      .addHandler(RouteHandler().router);
+      .addHandler(RouteHandler().router.call);
 
   final port = int.parse(Platform.environment['PORT'] ?? '8080');
   final server = await serve(handler, ip, port);

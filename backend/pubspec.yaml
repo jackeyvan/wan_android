@@ -7,9 +7,9 @@ environment:
 
 dependencies: 
   shelf_router: ^1.1.4
-#  args: ^2.4.0
-  shelf: ^1.4.2
+  shelf: ^1.4.1
   http: ^1.2.2
+  get_storage: ^2.1.1
 
 dev_dependencies:
   flutter_lints: ^4.0.0
