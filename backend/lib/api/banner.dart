@@ -1,7 +1,7 @@
-import 'dart:convert';
-
 import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
+import 'package:wan_android_backend/constant.dart';
+import 'package:wan_android_backend/hive_box.dart';
 
 part 'banner.g.dart';
 
@@ -14,9 +14,14 @@ class BannerModel {
 class BannerApi {
   @Route.get('/')
   Future<Response> fetchBanner(Request request) async {
-    // final result = Storage.read(Constant.keyBanner);
-    return Response.ok(json.encode("{我是banner}"),
-        headers: {'Content-Type': 'application/json'});
+    final result = HiveBox.get(Constant.keyBanner);
+
+    if (result != null) {
+      /// 直接解析
+      print(result);
+    }
+
+    return Response.ok(result, headers: {'Content-Type': 'application/json'});
   }
 
   Router get router => _$BannerApiRouter(this);
