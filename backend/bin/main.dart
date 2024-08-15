@@ -4,9 +4,12 @@ import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart';
 import 'package:wan_android_backend/middleware.dart';
 import 'package:wan_android_backend/route_handler.dart';
+import 'package:wan_android_backend/schedule.dart';
 
 void main(List<String> args) async {
   print('Server run start.');
+
+  Schedule().start();
 
   final ip = InternetAddress.anyIPv4;
 
