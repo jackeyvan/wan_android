@@ -1,0 +1,113 @@
+{
+  "configVersion": 2,
+  "packages": [
+    {
+      "name": "async",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/async-2.11.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "collection",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/collection-1.19.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "flutter_lints",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/flutter_lints-3.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.1"
+    },
+    {
+      "name": "http_methods",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/http_methods-1.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "http_parser",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/http_parser-4.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "lints",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/lints-3.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "meta",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/meta-1.15.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "path",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/path-1.9.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "shelf",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/shelf-1.4.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "shelf_router",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/shelf_router-1.1.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
+      "name": "source_span",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/source_span-1.10.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "stack_trace",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/stack_trace-1.11.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "stream_channel",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/stream_channel-2.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
+      "name": "string_scanner",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/string_scanner-1.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.1"
+    },
+    {
+      "name": "term_glyph",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/term_glyph-1.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "typed_data",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/typed_data-1.3.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
+      "name": "wan_android_backend",
+      "rootUri": "../",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    }
+  ],
+  "generated": "2024-08-15T08:05:31.246146Z",
+  "generator": "pub",
+  "generatorVersion": "3.4.3",
+  "flutterRoot": "file:///Users/mac/Library/Android/sdk/flutter",
+  "flutterVersion": "3.22.2",
+  "pubCache": "file:///Users/mac/.pub-cache"
+}
