@@ -13,3 +13,5 @@ dependencies:
 
 dev_dependencies:
   flutter_lints: ^4.0.0
+  shelf_router_generator: ^1.1.0
+  build_runner: ^2.4.11

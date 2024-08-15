@@ -13,10 +13,11 @@ void main(List<String> args) async {
   final handler = Pipeline()
       .addMiddleware(logRequests())
       .addMiddleware(rejectBadRequests())
-      .addHandler(RouteHandler().router.call);
+      .addHandler(RouteHandler().router);
 
   final port = int.parse(Platform.environment['PORT'] ?? '8080');
   final server = await serve(handler, ip, port);
+  server.autoCompress = true;
 
   print('Server run success, listening on port ${server.port}');
   print("http://${ip.address}:${server.port}");

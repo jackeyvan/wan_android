@@ -7,5 +7,5 @@ Response _rootHandler(Request req) {
 
 class RouteHandler {
   final router = Router()..get('/', _rootHandler);
-  // ..mount('/api/v1/films/', FilmApi().router.call);
+  // ..mount('/api/v1/films/', FilmApi().router);
 }

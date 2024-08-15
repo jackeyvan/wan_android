@@ -9,5 +9,6 @@ $ pub get # update packages
 $ dart bin/main.dart
 ```
 
-Created from templates made available by Stagehand under a BSD-style
-[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
+
+dart run build_runner build
+
