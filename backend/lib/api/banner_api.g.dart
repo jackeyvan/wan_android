@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'banner.dart';
+part of 'banner_api.dart';
 
 // **************************************************************************
 // ShelfRouterGenerator
