@@ -20,6 +20,7 @@ class Strings {
   static const String language = "language";
   static const String themeSetting = "themeSetting";
   static const String theme = "theme";
+  static const String score = "score";
 
   static const String clickToLogin = "clickToLogin";
   static const String logout = "logout";

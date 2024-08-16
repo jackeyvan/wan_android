@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:wan_android/app/api/wan_android_api.dart';
 import 'package:wan_android/app/const/keys.dart';
 import 'package:wan_android/app/modules/entity/article_entity.dart';
@@ -6,9 +7,9 @@ import 'package:wan_android/app/modules/entity/banner_entity.dart';
 import 'package:wan_android/app/modules/entity/hot_key_entity.dart';
 import 'package:wan_android/app/modules/entity/structure_entity.dart';
 import 'package:wan_android/app/modules/entity/user_entity.dart';
+import 'package:wan_android/app/modules/entity/user_info_entity.dart';
 import 'package:wan_android/core/init/storage.dart';
 import 'package:wan_android/core/net/cache/cache.dart';
-import 'package:get/get.dart';
 
 class WanAndroidApiPaths {
   /// 基础url
@@ -182,6 +183,11 @@ class WanAndroidRepository {
   /// 退出登录
   static Future logout() {
     return _api.get(WanAndroidApiPaths.logout);
+  }
+
+  /// 用户信息
+  static Future<UserInfoEntity?> fetchUserInfo() {
+    return _api.get<UserInfoEntity>(WanAndroidApiPaths.userinfo);
   }
 }
 

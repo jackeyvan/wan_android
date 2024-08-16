@@ -141,7 +141,7 @@ class ArticleItemWidget extends StatelessWidget {
 
   /// 发布时间
   buildTimeText() {
-    final date = articleEntity.niceShareDate;
+    final date = articleEntity.niceDate;
     if (isNotNullOrBlank(date)) {
       return paddingText(const EdgeInsets.only(left: 12), date!.split(" ")[0]);
     }

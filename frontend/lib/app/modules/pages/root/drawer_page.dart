@@ -3,6 +3,7 @@ import 'dart:math' as math;
 
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:wan_android/app/api/wan_android_repository.dart';
 import 'package:wan_android/app/const/styles.dart';
 import 'package:wan_android/app/modules/entity/user_entity.dart';
@@ -10,7 +11,6 @@ import 'package:wan_android/app/routes/routes.dart';
 import 'package:wan_android/core/page/base/base_controller.dart';
 import 'package:wan_android/core/page/base/base_page.dart';
 import 'package:wan_android/core/utils/overlay_utils.dart';
-import 'package:get/get.dart';
 
 class DrawerController extends BaseController {
   final user = User.getUser().obs;
@@ -93,7 +93,7 @@ class DrawerPage extends BasePage<DrawerController> {
                       controller.nickName(),
                       style: TextStyle(color: themeData.colorScheme.onPrimary),
                     ))),
-                centerTitle: true,
+                centerTitle: false,
                 titlePadding: const EdgeInsets.only(bottom: 18),
               ),
             ),
@@ -107,6 +107,11 @@ class DrawerPage extends BasePage<DrawerController> {
                 child: Column(
                   children: [
                     ListTile(
+                      leading: const Icon(Icons.data_exploration_outlined),
+                      title: Text(Strings.score.tr),
+                      onTap: () => Routes.toNamed(Routes.score),
+                    ),
+                    ListTile(
                       leading: const Icon(Icons.color_lens_outlined),
                       title: Text(Strings.theme.tr),
                       onTap: () => Routes.toNamed(Routes.themeChose),
@@ -114,11 +119,6 @@ class DrawerPage extends BasePage<DrawerController> {
                     ListTile(
                       leading: const Icon(Icons.language_outlined),
                       title: Text(Strings.language.tr),
-                      onTap: () => Routes.toNamed(Routes.language),
-                    ),
-                    ListTile(
-                      leading: const Icon(Icons.logout_outlined),
-                      title: Text(Strings.logout.tr),
                       onTap: () => Routes.toNamed(Routes.language),
                     ),
                   ],

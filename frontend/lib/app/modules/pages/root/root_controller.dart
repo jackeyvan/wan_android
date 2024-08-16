@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:wan_android/app/api/pgyer_repository.dart';
+import 'package:wan_android/app/api/wan_android_repository.dart';
 import 'package:wan_android/app/modules/entity/user_entity.dart';
 import 'package:wan_android/core/page/base/base_controller.dart';
 import 'package:wan_android/core/utils/log_utils.dart';
-import 'package:get/get.dart';
 
 class RootController extends BaseController {
   final _currentBottomIndex = 0.obs;
@@ -38,7 +39,9 @@ class RootController extends BaseController {
   }
 
   loadUserinfo() {
-    // _provider.loadUserinfo().then((user) {});
+    WanAndroidRepository.fetchUserInfo().then((user) {
+      print(user.toString());
+    });
   }
 
   void loadAppInfo() {
