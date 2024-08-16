@@ -53,7 +53,7 @@ class ArticleItemWidget extends StatelessWidget {
                         )),
 
                         ///  时间
-                        buildTimeText()
+                        buildTimeText(),
                       ],
                     ),
                   ],

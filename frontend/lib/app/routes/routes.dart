@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:wan_android/app/modules/pages/article/article_detail_controller.dart';
 import 'package:wan_android/app/modules/pages/article/article_detail_page.dart';
 import 'package:wan_android/app/modules/pages/root/root_page.dart';
+import 'package:wan_android/app/modules/pages/settings/collection_page.dart';
 import 'package:wan_android/app/modules/pages/settings/language_page.dart';
 import 'package:wan_android/app/modules/pages/settings/rank_page.dart';
 import 'package:wan_android/app/modules/pages/settings/score_page.dart';
@@ -10,6 +11,7 @@ import 'package:wan_android/app/modules/pages/settings/theme_page.dart';
 import 'package:wan_android/app/modules/pages/structure/structure_controller.dart';
 import 'package:wan_android/app/modules/pages/structure/structure_page.dart';
 import 'package:wan_android/app/modules/pages/user/login_controller.dart';
+import 'package:wan_android/app/modules/pages/user/login_middleware.dart';
 import 'package:wan_android/app/modules/pages/user/login_page.dart';
 import 'package:wan_android/app/test/test_page.dart';
 
@@ -67,11 +69,19 @@ class Routes {
         page: () => const LanguagePage(),
         binding: LanguageBinding()),
     GetPage(
-        name: score, page: () => const ScorePage(), binding: ScoreBinding()),
+        name: score,
+        page: () => const ScorePage(),
+        binding: ScoreBinding(),
+        middlewares: [LoginMiddleware()]),
     GetPage(
         name: rank,
         page: () => const ScoreRankPage(),
         binding: ScoreRankBinding()),
+    GetPage(
+        name: collection,
+        page: () => CollectionPage(),
+        binding: CollectionBinding(),
+        middlewares: [LoginMiddleware()]),
   ];
 
   /// 封装跳转页面方法

@@ -61,15 +61,6 @@ class WanAndroidApiPaths {
   /// 收藏网站列表
   static const String collectWebaddressList = "lg/collect/usertools/json";
 
-  /// 我的分享
-  static const String sharedList = "user/lg/private_articles/";
-
-  /// 分享文章 post
-  static const String shareArticle = "lg/user_article/add/json";
-
-  /// todoList
-  static const String todoList = "lg/todo/v2/list/";
-
   /// 公众号
   static const String wxArticleTab = "wxarticle/chapters/json";
 
@@ -204,6 +195,11 @@ class WanAndroidRepository {
   static Future<UserInfoEntity?> fetchUserInfo() {
     return _api.get<UserInfoEntity>(WanAndroidApiPaths.userinfo,
         cacheMode: CacheMode.remoteOnly);
+  }
+
+  /// 用户收藏列表
+  static Future<dynamic> fetchUserCollection(int page) {
+    return _api.get(WanAndroidApiPaths.collectList + "$page/json");
   }
 }
 
