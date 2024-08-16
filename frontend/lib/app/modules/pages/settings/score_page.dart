@@ -15,6 +15,8 @@ class ScoreBinding extends Bindings {
 }
 
 class ScoreController extends GetRefreshListController<ScoreEntity> {
+  ScoreController() : super(initPage: 1);
+
   @override
   Future<List<ScoreEntity>> loadListData(int page, bool isRefresh) async {
     return WanAndroidRepository.fetchCoinList(page)
@@ -29,9 +31,26 @@ class ScorePage extends GetRefreshPage<ScoreController> {
   Widget buildPage(BuildContext context) {
     return buildScaffoldPage(
         title: Obx(() => Text(Strings.score.tr.obs.value)),
-        builder: buildObxRefreshListPage(itemBuilder: (item, index) {
-          return Text(item.toString());
-        }),
+        builder: buildObxRefreshListPage<ScoreEntity>(
+            separatorBuilder: (item, index) => const Divider(height: 0.1),
+            itemBuilder: (item, index) {
+              return ListTile(
+                contentPadding: const EdgeInsets.all(4),
+                title: Text(
+                  item.reason ?? "",
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.w500),
+                ),
+                subtitle: Text(item.desc ?? ''),
+                trailing: Text(
+                  '${item.coinCount}',
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: Theme.of(context).colorScheme.primary),
+                ),
+              );
+            },
+            padding: const EdgeInsets.all(12)),
         actions: [
           TextButton(
               onPressed: () => Routes.toNamed(Routes.rank),

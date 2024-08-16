@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wan_android/app/api/wan_android_repository.dart';
 import 'package:wan_android/app/const/styles.dart';
@@ -30,8 +30,25 @@ class ScoreRankPage extends GetRefreshPage<ScoreRankController> {
   Widget buildPage(BuildContext context) {
     return buildScaffoldPage(
         title: Obx(() => Text(Strings.rank.tr.obs.value)),
-        builder: buildObxRefreshListPage(itemBuilder: (item, index) {
-          return Text(item.toString());
-        }));
+        builder: buildObxRefreshListPage<ScoreEntity>(
+            separatorBuilder: (item, index) => const Divider(height: 0.1),
+            itemBuilder: (item, index) {
+              return ListTile(
+                contentPadding: const EdgeInsets.all(4),
+                title: Text(
+                  item.username ?? "",
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.w500),
+                ),
+                subtitle: Text('等级: ${item.level}'),
+                trailing: Text(
+                  '${item.coinCount}',
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: Theme.of(context).colorScheme.primary),
+                ),
+              );
+            },
+            padding: const EdgeInsets.all(12)));
   }
 }
