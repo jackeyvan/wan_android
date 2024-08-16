@@ -83,6 +83,9 @@ class WanAndroidApiPaths {
 
   /// 用户信息
   static const String userinfo = "user/lg/userinfo/json";
+
+  /// 个人积分列表
+  static const String coinList = "lg/coin/list/";
 }
 
 /// =====================================================================================================================
@@ -139,6 +142,10 @@ class WanAndroidRepository {
   static Future<ArticleListEntity?> treeList(int page, int id) =>
       _api.get<ArticleListEntity>("${WanAndroidApiPaths.articleList}$page/json",
           params: {"cid": id});
+
+  /// 积分列表
+  static Future<dynamic> fetchCoinList(int page) =>
+      _api.get("${WanAndroidApiPaths.coinList}$page/json");
 
   /// 搜索热词
   static Future<List<HotKeyEntity>?> hotKeywords() async {

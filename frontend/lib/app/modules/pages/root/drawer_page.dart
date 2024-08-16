@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:wan_android/app/api/wan_android_repository.dart';
 import 'package:wan_android/app/const/styles.dart';
 import 'package:wan_android/app/modules/entity/user_entity.dart';
+import 'package:wan_android/app/modules/entity/user_info_entity.dart';
 import 'package:wan_android/app/routes/routes.dart';
 import 'package:wan_android/core/page/base/base_controller.dart';
 import 'package:wan_android/core/page/base/base_page.dart';
@@ -14,14 +15,19 @@ import 'package:wan_android/core/utils/overlay_utils.dart';
 
 class DrawerController extends BaseController {
   final user = User.getUser().obs;
+  final Rx<UserCoinInfo?> userCoininfo = UserCoinInfo().obs;
 
   StreamSubscription? subscription;
 
-  String nickName() {
-    return isLogin() ? user.value?.username ?? "" : Strings.clickToLogin.tr;
-  }
+  String get userName => user.value?.username ?? "";
 
-  void nickNameOnTap() {
+  int get userLevel => userCoininfo.value?.level ?? 0;
+
+  int get coinCount => userCoininfo.value?.coinCount ?? 0;
+
+  String get rank => userCoininfo.value?.rank ?? "999";
+
+  void toLoginPage() {
     if (!isLogin()) Routes.toNamed(Routes.login);
   }
 
@@ -29,7 +35,12 @@ class DrawerController extends BaseController {
   void onReady() {
     subscription = User.streamController.stream.listen((user) {
       this.user.value = user;
+      fetchUserInfo();
     });
+
+    if (isLogin()) {
+      fetchUserInfo();
+    }
   }
 
   @override
@@ -58,6 +69,14 @@ class DrawerController extends BaseController {
   }
 
   bool isLogin() => user.value != null;
+
+  void fetchUserInfo() {
+    WanAndroidRepository.fetchUserInfo().then((user) {
+      if (user != null) {
+        userCoininfo.value = user.coinInfo;
+      }
+    });
+  }
 }
 
 class DrawerPage extends BasePage<DrawerController> {
@@ -87,44 +106,60 @@ class DrawerPage extends BasePage<DrawerController> {
               pinned: true,
               automaticallyImplyLeading: false,
               flexibleSpace: FlexibleSpaceBar(
-                title: Obx(() => GestureDetector(
-                    onTap: () => controller.nickNameOnTap(),
-                    child: Text(
-                      controller.nickName(),
-                      style: TextStyle(color: themeData.colorScheme.onPrimary),
-                    ))),
-                centerTitle: false,
+                title: Obx(() => controller.isLogin()
+                    ? buildUserInfoWidget(themeData)
+                    : buildToLoginWidget(themeData)),
+                centerTitle: true,
                 titlePadding: const EdgeInsets.only(bottom: 18),
               ),
             ),
             const HeaderLocator.sliver(paintExtent: 80),
             SliverToBoxAdapter(
-              child: Card(
-                // elevation: 0,
-                margin: const EdgeInsets.only(top: 48, left: 16, right: 16),
-                color: themeData.colorScheme.primaryContainer,
-                // clipBehavior: Clip.antiAlias,
                 child: Column(
-                  children: [
-                    ListTile(
-                      leading: const Icon(Icons.data_exploration_outlined),
-                      title: Text(Strings.score.tr),
-                      onTap: () => Routes.toNamed(Routes.score),
-                    ),
-                    ListTile(
-                      leading: const Icon(Icons.color_lens_outlined),
-                      title: Text(Strings.theme.tr),
-                      onTap: () => Routes.toNamed(Routes.themeChose),
-                    ),
-                    ListTile(
-                      leading: const Icon(Icons.language_outlined),
-                      title: Text(Strings.language.tr),
-                      onTap: () => Routes.toNamed(Routes.language),
-                    ),
-                  ],
+              children: [
+                const SizedBox(height: 36),
+                Obx(() => controller.isLogin()
+                    ? Obx(() => Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text("等级: ${controller.userLevel}"),
+                            Text("积分: ${controller.coinCount}"),
+                            Text("排行: ${controller.rank}"),
+                          ],
+                        ))
+                    : const SizedBox.shrink()),
+                Card(
+                  // elevation: 0,
+                  margin: const EdgeInsets.only(top: 24, left: 16, right: 16),
+                  color: themeData.colorScheme.primaryContainer,
+                  // clipBehavior: Clip.antiAlias,
+                  child: Column(
+                    children: [
+                      ListTile(
+                        leading: const Icon(Icons.data_exploration_outlined),
+                        title: Text(Strings.score.tr),
+                        onTap: () => Routes.toNamed(Routes.score),
+                      ),
+                      ListTile(
+                        leading: const Icon(Icons.collections_outlined),
+                        title: Text(Strings.collection.tr),
+                        onTap: () => Routes.toNamed(Routes.collection),
+                      ),
+                      ListTile(
+                        leading: const Icon(Icons.color_lens_outlined),
+                        title: Text(Strings.theme.tr),
+                        onTap: () => Routes.toNamed(Routes.themeChose),
+                      ),
+                      ListTile(
+                        leading: const Icon(Icons.language_outlined),
+                        title: Text(Strings.language.tr),
+                        onTap: () => Routes.toNamed(Routes.language),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ),
+              ],
+            )),
           ],
         ),
       ),
@@ -200,6 +235,18 @@ class DrawerPage extends BasePage<DrawerController> {
         );
       },
     );
+  }
+
+  buildUserInfoWidget(ThemeData themeData) {
+    return Text(controller.userName,
+        style: TextStyle(color: themeData.primaryColor));
+  }
+
+  buildToLoginWidget(ThemeData themeData) {
+    return GestureDetector(
+        onTap: () => controller.toLoginPage(),
+        child: Text(Strings.clickToLogin.tr,
+            style: TextStyle(color: themeData.primaryColor)));
   }
 }
 

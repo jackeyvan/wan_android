@@ -1,8 +1,8 @@
 import 'dart:ui';
 
+import 'package:get/get.dart';
 import 'package:wan_android/app/const/keys.dart';
 import 'package:wan_android/core/init/storage.dart';
-import 'package:get/get.dart';
 
 class Languages extends Translations {
   static const fallbackLocale = Locale('zh', 'CN');
@@ -63,6 +63,8 @@ const zhCN = {
   'accountOrPasswordIsNull': '账号或密码为空',
   'password': '密码',
   'rePassword': '重复密码',
+  'score': '积分',
+  'collection': '收藏',
 };
 
 const enUS = {
@@ -99,4 +101,6 @@ const enUS = {
   'accountOrPasswordIsNull': 'Account or password is empty',
   'password': 'Password',
   'rePassword': 'Password again',
+  'score': 'Point',
+  'collection': 'Collection',
 };

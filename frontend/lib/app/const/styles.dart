@@ -46,6 +46,7 @@ class Strings {
   static const String accountOrPasswordIsNull = "accountOrPasswordIsNull";
   static const String password = "password";
   static const String rePassword = "rePassword";
+  static const String collection = "collection";
 
   static const lagerTextSize = 30.0;
   static const bigTextSize = 23.0;

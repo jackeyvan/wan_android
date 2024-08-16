@@ -1,91 +1,63 @@
-// import 'dart:convert';
-//
-// import 'package:wan_android/generated/json/base/json_field.dart';
-// import 'package:wan_android/generated/json/user_info_entity.g.dart';
-//
-// @JsonSerializable()
+import 'dart:convert';
+
+import 'package:wan_android/app/modules/entity/user_entity.dart';
+import 'package:wan_android/generated/json/base/json_field.dart';
+import 'package:wan_android/generated/json/user_info_entity.g.dart';
+
+@JsonSerializable()
 class UserInfoEntity {
-//   UserInfoCoinInfo? coinInfo;
-//   UserInfoCollectArticleInfo? collectArticleInfo;
-//   UserInfoUserInfo? userInfo;
-//
-//   UserInfoEntity();
-//
-//   factory UserInfoEntity.fromJson(Map<String, dynamic> json) =>
-//       $UserInfoEntityFromJson(json);
-//
-//   Map<String, dynamic> toJson() => $UserInfoEntityToJson(this);
-//
-//   @override
-//   String toString() {
-//     return jsonEncode(this);
-//   }
-// }
-//
-// @JsonSerializable()
-// class UserInfoCoinInfo {
-//   int? coinCount;
-//   int? level;
-//   String? nickname;
-//   String? rank;
-//   int? userId;
-//   String? username;
-//
-//   UserInfoCoinInfo();
-//
-//   factory UserInfoCoinInfo.fromJson(Map<String, dynamic> json) =>
-//       $UserInfoCoinInfoFromJson(json);
-//
-//   Map<String, dynamic> toJson() => $UserInfoCoinInfoToJson(this);
-//
-//   @override
-//   String toString() {
-//     return jsonEncode(this);
-//   }
-// }
-//
-// @JsonSerializable()
-// class UserInfoCollectArticleInfo {
-//   int? count;
-//
-//   UserInfoCollectArticleInfo();
-//
-//   factory UserInfoCollectArticleInfo.fromJson(Map<String, dynamic> json) =>
-//       $UserInfoCollectArticleInfoFromJson(json);
-//
-//   Map<String, dynamic> toJson() => $UserInfoCollectArticleInfoToJson(this);
-//
-//   @override
-//   String toString() {
-//     return jsonEncode(this);
-//   }
-// }
-//
-// @JsonSerializable()
-// class UserInfoUserInfo {
-//   bool? admin;
-//   List<dynamic>? chapterTops;
-//   int? coinCount;
-//   List<dynamic>? collectIds;
-//   String? email;
-//   String? icon;
-//   int? id;
-//   String? nickname;
-//   String? password;
-//   String? publicName;
-//   String? token;
-//   int? type;
-//   String? username;
-//
-//   UserInfoUserInfo();
-//
-//   factory UserInfoUserInfo.fromJson(Map<String, dynamic> json) =>
-//       $UserInfoUserInfoFromJson(json);
-//
-//   Map<String, dynamic> toJson() => $UserInfoUserInfoToJson(this);
-//
-//   @override
-//   String toString() {
-//     return jsonEncode(this);
-//   }
+  UserCoinInfo? coinInfo;
+  UserCollectArticleInfo? collectArticleInfo;
+  User? userInfo;
+
+  UserInfoEntity();
+
+  factory UserInfoEntity.fromJson(Map<String, dynamic> json) =>
+      $UserInfoEntityFromJson(json);
+
+  Map<String, dynamic> toJson() => $UserInfoEntityToJson(this);
+
+  @override
+  String toString() {
+    return jsonEncode(this);
+  }
+}
+
+@JsonSerializable()
+class UserCoinInfo {
+  int? coinCount;
+  int? level;
+  String? nickname;
+  String? rank;
+  int? userId;
+  String? username;
+
+  UserCoinInfo();
+
+  factory UserCoinInfo.fromJson(Map<String, dynamic> json) =>
+      $UserCoinInfoFromJson(json);
+
+  Map<String, dynamic> toJson() => $UserCoinInfoToJson(this);
+
+  @override
+  String toString() {
+    return jsonEncode(this);
+  }
+}
+
+@JsonSerializable()
+class UserCollectArticleInfo {
+  int? count;
+
+  UserCollectArticleInfo();
+
+  factory UserCollectArticleInfo.fromJson(Map<String, dynamic> json) =>
+      $UserCollectArticleInfoFromJson(json);
+
+  Map<String, dynamic> toJson() => $UserCollectArticleInfoToJson(this);
+
+  @override
+  String toString() {
+    return jsonEncode(this);
+  }
 }

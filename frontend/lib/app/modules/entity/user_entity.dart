@@ -55,11 +55,17 @@ class User {
 
   User.fromJson(Map<String, dynamic> json) {
     _user = $UserFromJson(json);
-
+    saveUser(_user!);
     streamController.add(_user!);
+  }
 
+  static saveUser(User user) {
     /// 解析User数据时，保存到本地
-    Storage.write(Keys.userKey, _user);
+    Storage.write(Keys.userKey, user);
+
+    if (_user != user) {
+      _user = user;
+    }
   }
 
   Map<String, dynamic> toJson() => $UserToJson(this);

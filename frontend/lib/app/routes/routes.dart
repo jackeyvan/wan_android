@@ -23,6 +23,7 @@ abstract class _Paths {
   static const login = '/login';
   static const language = '/language';
   static const search = '/search';
+  static const collection = '/collection';
   static const test = '/test';
 }
 
@@ -36,6 +37,7 @@ class Routes {
   static const themeChose = _Paths.themeChose;
   static const score = _Paths.score;
   static const test = _Paths.test;
+  static const collection = _Paths.collection;
   static const login = _Paths.login;
   static const language = _Paths.language;
   static const search = _Paths.search;

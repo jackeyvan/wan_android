@@ -23,6 +23,10 @@ HotKeyEntity $HotKeyEntityFromJson(Map<String, dynamic> json) {
   if (visible != null) {
     hotKeyEntity.visible = visible;
   }
+  final bool? isHistory = jsonConvert.convert<bool>(json['isHistory']);
+  if (isHistory != null) {
+    hotKeyEntity.isHistory = isHistory;
+  }
   return hotKeyEntity;
 }
 
@@ -33,6 +37,7 @@ Map<String, dynamic> $HotKeyEntityToJson(HotKeyEntity entity) {
   data['name'] = entity.name;
   data['order'] = entity.order;
   data['visible'] = entity.visible;
+  data['isHistory'] = entity.isHistory;
   return data;
 }
 
@@ -43,12 +48,14 @@ extension HotKeyEntityExtension on HotKeyEntity {
     String? name,
     double? order,
     double? visible,
+    bool? isHistory,
   }) {
     return HotKeyEntity()
       ..id = id ?? this.id
       ..link = link ?? this.link
       ..name = name ?? this.name
       ..order = order ?? this.order
-      ..visible = visible ?? this.visible;
+      ..visible = visible ?? this.visible
+      ..isHistory = isHistory ?? this.isHistory;
   }
 }

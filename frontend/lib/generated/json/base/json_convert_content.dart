@@ -12,6 +12,7 @@ import 'package:wan_android/app/modules/entity/hot_key_entity.dart';
 import 'package:wan_android/app/modules/entity/score_rank_entity.dart';
 import 'package:wan_android/app/modules/entity/structure_entity.dart';
 import 'package:wan_android/app/modules/entity/user_entity.dart';
+import 'package:wan_android/app/modules/entity/user_info_entity.dart';
 
 JsonConvert jsonConvert = JsonConvert();
 
@@ -217,6 +218,24 @@ class JsonConvert {
           .map<User>((Map<String, dynamic> e) => User.fromJson(e))
           .toList() as M;
     }
+    if (<UserInfoEntity>[] is M) {
+      return data
+          .map<UserInfoEntity>(
+              (Map<String, dynamic> e) => UserInfoEntity.fromJson(e))
+          .toList() as M;
+    }
+    if (<UserCoinInfo>[] is M) {
+      return data
+          .map<UserCoinInfo>(
+              (Map<String, dynamic> e) => UserCoinInfo.fromJson(e))
+          .toList() as M;
+    }
+    if (<UserCollectArticleInfo>[] is M) {
+      return data
+          .map<UserCollectArticleInfo>(
+              (Map<String, dynamic> e) => UserCollectArticleInfo.fromJson(e))
+          .toList() as M;
+    }
 
     debugPrint("$M not found");
 
@@ -249,6 +268,9 @@ class JsonConvertClassCollection {
     (ScoreRankEntity).toString(): ScoreRankEntity.fromJson,
     (NavigateEntity).toString(): NavigateEntity.fromJson,
     (User).toString(): User.fromJson,
+    (UserInfoEntity).toString(): UserInfoEntity.fromJson,
+    (UserCoinInfo).toString(): UserCoinInfo.fromJson,
+    (UserCollectArticleInfo).toString(): UserCollectArticleInfo.fromJson,
   };
 
   bool containsKey(String type) {

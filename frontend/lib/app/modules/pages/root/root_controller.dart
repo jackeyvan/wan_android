@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wan_android/app/api/pgyer_repository.dart';
-import 'package:wan_android/app/api/wan_android_repository.dart';
 import 'package:wan_android/app/modules/entity/user_entity.dart';
 import 'package:wan_android/core/page/base/base_controller.dart';
 import 'package:wan_android/core/utils/log_utils.dart';
@@ -33,15 +32,8 @@ class RootController extends BaseController {
 
   @override
   void onReady() {
-    loadUserinfo();
     // loadAppInfo();
     super.onReady();
-  }
-
-  loadUserinfo() {
-    WanAndroidRepository.fetchUserInfo().then((user) {
-      print(user.toString());
-    });
   }
 
   void loadAppInfo() {
