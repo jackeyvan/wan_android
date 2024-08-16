@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart';
-import 'package:wan_android_backend/hive_box.dart';
-import 'package:wan_android_backend/middleware.dart';
-import 'package:wan_android_backend/route_handler.dart';
-import 'package:wan_android_backend/schedule.dart';
+import 'package:wan_android_backend/db/hive_box.dart';
+import 'package:wan_android_backend/route/middleware.dart';
+import 'package:wan_android_backend/route/route_handler.dart';
+import 'package:wan_android_backend/schedule/schedule.dart';
 
 void main(List<String> args) async {
   print('Server run start.');

@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:wan_android_backend/constant.dart';
-import 'package:wan_android_backend/hive_box.dart';
+import 'package:wan_android_backend/const/constant.dart';
+import 'package:wan_android_backend/db/hive_box.dart';
 
 class BaseResponse {
   String? errorMsg;
