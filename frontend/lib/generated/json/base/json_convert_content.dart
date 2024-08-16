@@ -195,16 +195,15 @@ class JsonConvert {
               (Map<String, dynamic> e) => HotKeyEntity.fromJson(e))
           .toList() as M;
     }
-    if (<ScoreRankListEntity>[] is M) {
+    if (<ScoreListEntity>[] is M) {
       return data
-          .map<ScoreRankListEntity>(
-              (Map<String, dynamic> e) => ScoreRankListEntity.fromJson(e))
+          .map<ScoreListEntity>(
+              (Map<String, dynamic> e) => ScoreListEntity.fromJson(e))
           .toList() as M;
     }
-    if (<ScoreRankEntity>[] is M) {
+    if (<ScoreEntity>[] is M) {
       return data
-          .map<ScoreRankEntity>(
-              (Map<String, dynamic> e) => ScoreRankEntity.fromJson(e))
+          .map<ScoreEntity>((Map<String, dynamic> e) => ScoreEntity.fromJson(e))
           .toList() as M;
     }
     if (<NavigateEntity>[] is M) {
@@ -264,8 +263,8 @@ class JsonConvertClassCollection {
     (ArticleTabEntity).toString(): ArticleTabEntity.fromJson,
     (BannerEntity).toString(): BannerEntity.fromJson,
     (HotKeyEntity).toString(): HotKeyEntity.fromJson,
-    (ScoreRankListEntity).toString(): ScoreRankListEntity.fromJson,
-    (ScoreRankEntity).toString(): ScoreRankEntity.fromJson,
+    (ScoreListEntity).toString(): ScoreListEntity.fromJson,
+    (ScoreEntity).toString(): ScoreEntity.fromJson,
     (NavigateEntity).toString(): NavigateEntity.fromJson,
     (User).toString(): User.fromJson,
     (UserInfoEntity).toString(): UserInfoEntity.fromJson,

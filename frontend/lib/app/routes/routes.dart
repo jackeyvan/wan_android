@@ -4,6 +4,7 @@ import 'package:wan_android/app/modules/pages/article/article_detail_controller.
 import 'package:wan_android/app/modules/pages/article/article_detail_page.dart';
 import 'package:wan_android/app/modules/pages/root/root_page.dart';
 import 'package:wan_android/app/modules/pages/settings/language_page.dart';
+import 'package:wan_android/app/modules/pages/settings/rank_page.dart';
 import 'package:wan_android/app/modules/pages/settings/score_page.dart';
 import 'package:wan_android/app/modules/pages/settings/theme_page.dart';
 import 'package:wan_android/app/modules/pages/structure/structure_controller.dart';
@@ -24,6 +25,7 @@ abstract class _Paths {
   static const language = '/language';
   static const search = '/search';
   static const collection = '/collection';
+  static const rank = '/rank';
   static const test = '/test';
 }
 
@@ -41,6 +43,7 @@ class Routes {
   static const login = _Paths.login;
   static const language = _Paths.language;
   static const search = _Paths.search;
+  static const rank = _Paths.rank;
 
   static final routes = [
     GetPage(name: root, page: () => const RootPage()),
@@ -65,6 +68,10 @@ class Routes {
         binding: LanguageBinding()),
     GetPage(
         name: score, page: () => const ScorePage(), binding: ScoreBinding()),
+    GetPage(
+        name: rank,
+        page: () => const ScoreRankPage(),
+        binding: ScoreRankBinding()),
   ];
 
   /// 封装跳转页面方法

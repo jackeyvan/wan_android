@@ -77,4 +77,12 @@ abstract class GetRefreshPage<C extends GetRefreshController>
             const SizedBox.shrink(),
         itemCount: data.length);
   }
+
+  buildScaffoldPage(
+      {required Widget title, required Widget builder, List<Widget>? actions}) {
+    return Scaffold(
+      appBar: AppBar(title: title, actions: actions, centerTitle: false),
+      body: builder,
+    );
+  }
 }

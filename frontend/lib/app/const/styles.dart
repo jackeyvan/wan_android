@@ -21,6 +21,7 @@ class Strings {
   static const String themeSetting = "themeSetting";
   static const String theme = "theme";
   static const String score = "score";
+  static const String rank = "rank";
 
   static const String clickToLogin = "clickToLogin";
   static const String logout = "logout";

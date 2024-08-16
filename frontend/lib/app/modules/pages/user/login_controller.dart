@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:wan_android/app/api/wan_android_repository.dart';
 import 'package:wan_android/app/const/styles.dart';
+import 'package:wan_android/app/modules/entity/user_entity.dart';
 import 'package:wan_android/app/routes/routes.dart';
 import 'package:wan_android/core/init/init_core.dart';
 import 'package:wan_android/core/net/api_error.dart';
 import 'package:wan_android/core/page/base/base_controller.dart';
 import 'package:wan_android/core/utils/overlay_utils.dart';
-import 'package:get/get.dart';
 
 class LoginBinding extends Bindings {
   @override
@@ -47,7 +48,7 @@ class LoginController extends BaseController {
     if (isLoginPage) {
       OverlayUtils.showOverlay(
               () => WanAndroidRepository.login(true, account, password))
-          .then((value) => offPage(Strings.loginSuccess.tr))
+          .then((value) => handleResult(value, Strings.loginSuccess.tr))
           .catchError((error, _) => handleError(error));
     } else {
       final rePassword = rePassController.text;
@@ -59,7 +60,7 @@ class LoginController extends BaseController {
 
       OverlayUtils.showOverlay(() => WanAndroidRepository.login(
               false, account, password, rePassword: rePassword))
-          .then((e) => offPage(Strings.registerSuccess.tr))
+          .then((value) => handleResult(value, Strings.registerSuccess.tr))
           .catchError((error, _) => handleError(error));
     }
   }
@@ -69,7 +70,10 @@ class LoginController extends BaseController {
     OverlayUtils.showToast(error.toString());
   }
 
-  void offPage(String text) {
+  void handleResult(User? user, String text) {
+    if (user != null) {
+      User.saveUser(user);
+    }
     dismissLoadingDialog();
     OverlayUtils.showToast(text);
     Routes.back();

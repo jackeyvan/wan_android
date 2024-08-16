@@ -12,7 +12,6 @@ void main() async {
   await AppService().dependencies();
 
   runApp(const WanApp());
-  // runAutoSizeApp(const WanApp());
 }
 
 class WanApp extends StatelessWidget {

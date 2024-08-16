@@ -6,18 +6,18 @@ import 'package:wan_android/generated/json/score_rank_entity.g.dart';
 export 'package:wan_android/generated/json/score_rank_entity.g.dart';
 
 @JsonSerializable()
-class ScoreRankListEntity {
+class ScoreListEntity {
   int? curPage;
-  List<ScoreRankEntity>? datas;
+  List<ScoreEntity>? datas;
   int? offset;
   bool? over;
   int? pageCount;
   int? size;
   int? total;
 
-  ScoreRankListEntity();
+  ScoreListEntity();
 
-  factory ScoreRankListEntity.fromJson(Map<String, dynamic> json) =>
+  factory ScoreListEntity.fromJson(Map<String, dynamic> json) =>
       $ScoreRankListEntityFromJson(json);
 
   Map<String, dynamic> toJson() => $ScoreRankListEntityToJson(this);
@@ -29,17 +29,22 @@ class ScoreRankListEntity {
 }
 
 @JsonSerializable()
-class ScoreRankEntity {
+class ScoreEntity {
   int? coinCount;
   int? level;
+  int? date;
   String? nickname;
+  String? desc;
   String? rank;
+  String? reason;
   int? userId;
+  int? id;
+  int? type;
   String? username;
 
-  ScoreRankEntity();
+  ScoreEntity();
 
-  factory ScoreRankEntity.fromJson(Map<String, dynamic> json) =>
+  factory ScoreEntity.fromJson(Map<String, dynamic> json) =>
       $ScoreRankEntityFromJson(json);
 
   Map<String, dynamic> toJson() => $ScoreRankEntityToJson(this);

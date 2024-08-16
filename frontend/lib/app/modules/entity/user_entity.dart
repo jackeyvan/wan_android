@@ -53,22 +53,17 @@ class User {
     Storage.remove(Keys.userKey);
   }
 
-  User.fromJson(Map<String, dynamic> json) {
-    _user = $UserFromJson(json);
-    saveUser(_user!);
-    streamController.add(_user!);
-  }
-
   static saveUser(User user) {
+    _user = user;
+    streamController.add(user);
+
     /// 解析User数据时，保存到本地
     Storage.write(Keys.userKey, user);
-
-    if (_user != user) {
-      _user = user;
-    }
   }
 
   Map<String, dynamic> toJson() => $UserToJson(this);
+
+  factory User.fromJson(Map<String, dynamic> json) => $UserFromJson(json);
 
   @override
   String toString() {

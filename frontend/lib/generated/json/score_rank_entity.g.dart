@@ -1,14 +1,14 @@
 import 'package:wan_android/app/modules/entity/score_rank_entity.dart';
 import 'package:wan_android/generated/json/base/json_convert_content.dart';
 
-ScoreRankListEntity $ScoreRankListEntityFromJson(Map<String, dynamic> json) {
-  final ScoreRankListEntity scoreRankListEntity = ScoreRankListEntity();
+ScoreListEntity $ScoreRankListEntityFromJson(Map<String, dynamic> json) {
+  final ScoreListEntity scoreRankListEntity = ScoreListEntity();
   final int? curPage = jsonConvert.convert<int>(json['curPage']);
   if (curPage != null) {
     scoreRankListEntity.curPage = curPage;
   }
-  final List<ScoreRankEntity>? datas = (json['datas'] as List<dynamic>?)
-      ?.map((e) => jsonConvert.convert<ScoreRankEntity>(e) as ScoreRankEntity)
+  final List<ScoreEntity>? datas = (json['datas'] as List<dynamic>?)
+      ?.map((e) => jsonConvert.convert<ScoreEntity>(e) as ScoreEntity)
       .toList();
   if (datas != null) {
     scoreRankListEntity.datas = datas;
@@ -36,7 +36,7 @@ ScoreRankListEntity $ScoreRankListEntityFromJson(Map<String, dynamic> json) {
   return scoreRankListEntity;
 }
 
-Map<String, dynamic> $ScoreRankListEntityToJson(ScoreRankListEntity entity) {
+Map<String, dynamic> $ScoreRankListEntityToJson(ScoreListEntity entity) {
   final Map<String, dynamic> data = <String, dynamic>{};
   data['curPage'] = entity.curPage;
   data['datas'] = entity.datas?.map((v) => v.toJson()).toList();
@@ -48,17 +48,17 @@ Map<String, dynamic> $ScoreRankListEntityToJson(ScoreRankListEntity entity) {
   return data;
 }
 
-extension ScoreRankListEntityExtension on ScoreRankListEntity {
-  ScoreRankListEntity copyWith({
+extension ScoreRankListEntityExtension on ScoreListEntity {
+  ScoreListEntity copyWith({
     int? curPage,
-    List<ScoreRankEntity>? datas,
+    List<ScoreEntity>? datas,
     int? offset,
     bool? over,
     int? pageCount,
     int? size,
     int? total,
   }) {
-    return ScoreRankListEntity()
+    return ScoreListEntity()
       ..curPage = curPage ?? this.curPage
       ..datas = datas ?? this.datas
       ..offset = offset ?? this.offset
@@ -69,8 +69,8 @@ extension ScoreRankListEntityExtension on ScoreRankListEntity {
   }
 }
 
-ScoreRankEntity $ScoreRankEntityFromJson(Map<String, dynamic> json) {
-  final ScoreRankEntity scoreRankEntity = ScoreRankEntity();
+ScoreEntity $ScoreRankEntityFromJson(Map<String, dynamic> json) {
+  final ScoreEntity scoreRankEntity = ScoreEntity();
   final int? coinCount = jsonConvert.convert<int>(json['coinCount']);
   if (coinCount != null) {
     scoreRankEntity.coinCount = coinCount;
@@ -79,9 +79,29 @@ ScoreRankEntity $ScoreRankEntityFromJson(Map<String, dynamic> json) {
   if (level != null) {
     scoreRankEntity.level = level;
   }
+  final int? date = jsonConvert.convert<int>(json['date']);
+  if (date != null) {
+    scoreRankEntity.date = date;
+  }
+  final int? id = jsonConvert.convert<int>(json['id']);
+  if (id != null) {
+    scoreRankEntity.id = id;
+  }
+  final int? type = jsonConvert.convert<int>(json['type']);
+  if (type != null) {
+    scoreRankEntity.type = type;
+  }
   final String? nickname = jsonConvert.convert<String>(json['nickname']);
   if (nickname != null) {
     scoreRankEntity.nickname = nickname;
+  }
+  final String? desc = jsonConvert.convert<String>(json['desc']);
+  if (desc != null) {
+    scoreRankEntity.desc = desc;
+  }
+  final String? reason = jsonConvert.convert<String>(json['reason']);
+  if (reason != null) {
+    scoreRankEntity.reason = reason;
   }
   final String? rank = jsonConvert.convert<String>(json['rank']);
   if (rank != null) {
@@ -98,7 +118,7 @@ ScoreRankEntity $ScoreRankEntityFromJson(Map<String, dynamic> json) {
   return scoreRankEntity;
 }
 
-Map<String, dynamic> $ScoreRankEntityToJson(ScoreRankEntity entity) {
+Map<String, dynamic> $ScoreRankEntityToJson(ScoreEntity entity) {
   final Map<String, dynamic> data = <String, dynamic>{};
   data['coinCount'] = entity.coinCount;
   data['level'] = entity.level;
@@ -106,24 +126,38 @@ Map<String, dynamic> $ScoreRankEntityToJson(ScoreRankEntity entity) {
   data['rank'] = entity.rank;
   data['userId'] = entity.userId;
   data['username'] = entity.username;
+  data['date'] = entity.date;
+  data['desc'] = entity.desc;
+  data['reason'] = entity.reason;
+  data['id'] = entity.id;
+  data['type'] = entity.type;
   return data;
 }
 
-extension ScoreRankEntityExtension on ScoreRankEntity {
-  ScoreRankEntity copyWith({
-    int? coinCount,
-    int? level,
-    String? nickname,
-    String? rank,
-    int? userId,
-    String? username,
-  }) {
-    return ScoreRankEntity()
+extension ScoreRankEntityExtension on ScoreEntity {
+  ScoreEntity copyWith(
+      {int? coinCount,
+      int? level,
+      String? nickname,
+      String? rank,
+      int? userId,
+      String? username,
+      int? date,
+      String? desc,
+      String? reason,
+      int? id,
+      int? type}) {
+    return ScoreEntity()
       ..coinCount = coinCount ?? this.coinCount
       ..level = level ?? this.level
       ..nickname = nickname ?? this.nickname
       ..rank = rank ?? this.rank
       ..userId = userId ?? this.userId
-      ..username = username ?? this.username;
+      ..username = username ?? this.username
+      ..date = date ?? this.date
+      ..desc = desc ?? this.desc
+      ..reason = reason ?? this.reason
+      ..id = id ?? this.id
+      ..type = type ?? this.type;
   }
 }

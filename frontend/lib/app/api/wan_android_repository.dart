@@ -5,6 +5,7 @@ import 'package:wan_android/app/modules/entity/article_entity.dart';
 import 'package:wan_android/app/modules/entity/article_tab_entity.dart';
 import 'package:wan_android/app/modules/entity/banner_entity.dart';
 import 'package:wan_android/app/modules/entity/hot_key_entity.dart';
+import 'package:wan_android/app/modules/entity/score_rank_entity.dart';
 import 'package:wan_android/app/modules/entity/structure_entity.dart';
 import 'package:wan_android/app/modules/entity/user_entity.dart';
 import 'package:wan_android/app/modules/entity/user_info_entity.dart';
@@ -86,6 +87,9 @@ class WanAndroidApiPaths {
 
   /// 个人积分列表
   static const String coinList = "lg/coin/list/";
+
+  /// 积分排行榜
+  static const String coinRankList = "coin/rank/";
 }
 
 /// =====================================================================================================================
@@ -144,8 +148,12 @@ class WanAndroidRepository {
           params: {"cid": id});
 
   /// 积分列表
-  static Future<dynamic> fetchCoinList(int page) =>
-      _api.get("${WanAndroidApiPaths.coinList}$page/json");
+  static Future<ScoreListEntity?> fetchCoinList(int page) =>
+      _api.get<ScoreListEntity>("${WanAndroidApiPaths.coinList}$page/json");
+
+  /// 积分排行榜
+  static Future<ScoreListEntity?> fetchCoinRankList(int page) =>
+      _api.get<ScoreListEntity>("${WanAndroidApiPaths.coinRankList}$page/json");
 
   /// 搜索热词
   static Future<List<HotKeyEntity>?> hotKeywords() async {
@@ -194,7 +202,8 @@ class WanAndroidRepository {
 
   /// 用户信息
   static Future<UserInfoEntity?> fetchUserInfo() {
-    return _api.get<UserInfoEntity>(WanAndroidApiPaths.userinfo);
+    return _api.get<UserInfoEntity>(WanAndroidApiPaths.userinfo,
+        cacheMode: CacheMode.remoteOnly);
   }
 }
 
