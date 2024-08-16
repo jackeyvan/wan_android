@@ -25,7 +25,7 @@ class DrawerController extends BaseController {
 
   int get coinCount => userCoininfo.value?.coinCount ?? 0;
 
-  String get rank => userCoininfo.value?.rank ?? "999";
+  String get rank => userCoininfo.value?.rank ?? "0";
 
   void toLoginPage() {
     if (!isLogin()) Routes.toNamed(Routes.login);
@@ -239,14 +239,14 @@ class DrawerPage extends BasePage<DrawerController> {
 
   buildUserInfoWidget(ThemeData themeData) {
     return Text(controller.userName,
-        style: TextStyle(color: themeData.primaryColor));
+        style: TextStyle(color: themeData.colorScheme.onPrimary));
   }
 
   buildToLoginWidget(ThemeData themeData) {
     return GestureDetector(
         onTap: () => controller.toLoginPage(),
         child: Text(Strings.clickToLogin.tr,
-            style: TextStyle(color: themeData.primaryColor)));
+            style: TextStyle(color: themeData.colorScheme.onPrimary)));
   }
 }
 
