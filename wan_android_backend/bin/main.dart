@@ -28,5 +28,5 @@ void main(List<String> args) async {
   server.autoCompress = true;
 
   print('Server run success, listening on port ${server.port}');
-  print("http://${ip.address}:${server.port}");
+  print("http://${ip.address}:${server.port}/api/v1/banner");
 }

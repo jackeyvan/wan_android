@@ -25,12 +25,12 @@ Router _$V1ApiRouter(V1Api service) {
   );
   router.add(
     'GET',
-    r'/wxarticle/list/<id>/<page>',
+    r'/platform/list/<id>/<page>',
     service.fetchPlatformList,
   );
   router.add(
     'GET',
-    r'/wxarticle/chapters',
+    r'/platform/tabs',
     service.fetchPlatformTabs,
   );
   router.add(
@@ -45,18 +45,18 @@ Router _$V1ApiRouter(V1Api service) {
   );
   router.add(
     'GET',
-    r'/navi/tabs',
-    service.fetchNaviTabs,
+    r'/navi/list',
+    service.fetchNaviList,
   );
   router.add(
     'GET',
-    r'/tree/tabs',
-    service.fetchTreeTabs,
-  );
-  router.add(
-    'GET',
-    r'/tree/list/<id>/<page>',
+    r'/tree/list',
     service.fetchTreeList,
+  );
+  router.add(
+    'GET',
+    r'/tree/detail/list/<id>/<page>',
+    service.fetchTreeDetailList,
   );
   router.add(
     'GET',

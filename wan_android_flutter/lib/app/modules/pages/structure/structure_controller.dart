@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:wan_android/app/api/wan_android_repository.dart';
+import 'package:get/get.dart';
+import 'package:wan_android/app/api/globe_repository.dart';
 import 'package:wan_android/app/const/styles.dart';
 import 'package:wan_android/app/modules/base/tab_controller.dart';
 import 'package:wan_android/app/modules/entity/article_entity.dart';
 import 'package:wan_android/app/modules/entity/structure_entity.dart';
 import 'package:wan_android/core/page/refresh/refresh_controller.dart';
-import 'package:get/get.dart';
 
 import 'structure_page.dart';
 
@@ -41,9 +41,9 @@ class StructureController extends GetRefreshListController<StructureEntity> {
   @override
   Future<List<StructureEntity>> loadListData(int page, bool isRefresh) {
     if (fromTree) {
-      return WanAndroidRepository.treeTabs();
+      return GlobeRepository.fetchTreeList();
     } else {
-      return WanAndroidRepository.naviTabs();
+      return GlobeRepository.fetchNaviList();
     }
   }
 }
@@ -88,7 +88,7 @@ class StructureDetailListController
 
   @override
   Future<List<ArticleEntity>> loadListData(int page, bool isRefresh) {
-    return WanAndroidRepository.treeList(page, id ?? 0).then((e) {
+    return GlobeRepository.fetchTreeDetailList(page, id ?? 0).then((e) {
       return (e?.datas ?? []).map((d) {
         d.chapterName = null;
         d.superChapterName = null;

@@ -7,8 +7,8 @@ class Schedule {
   Timer? timer;
 
   void start() {
-    timer = Timer.periodic(Duration(hours: 1), (timer) => fetchWanAndroidApi());
-    Future.delayed(Duration(seconds: 5), () => fetchWanAndroidApi());
+    timer = Timer.periodic(Duration(days: 1), (timer) => fetchWanAndroidApi());
+    Future.delayed(Duration(seconds: 10), () => fetchWanAndroidApi());
   }
 
   void stop() {
@@ -22,8 +22,8 @@ class Schedule {
     Repository.fetchTopArticle(force: true);
     Repository.fetchPlatformTabs(force: true);
     Repository.fetchProjectTabs(force: true);
-    Repository.fetchNaviTabs(force: true);
-    Repository.fetchTreeTabs(force: true);
+    Repository.fetchNaviList(force: true);
+    Repository.fetchTreeList(force: true);
     Repository.fetchHotKeywords(force: true);
   }
 }

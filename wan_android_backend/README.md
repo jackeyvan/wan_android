@@ -24,6 +24,8 @@
         globe login
 
 - 部署
-    
-        globe deploy
+        
+  部署到开发环境：`globe deploy`
+
+  部署到生产环境：`globe deploy --prod`
 

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:wan_android/app/api/globe_repository.dart';
 import 'package:wan_android/app/api/wan_android_repository.dart';
 import 'package:wan_android/app/const/styles.dart';
 import 'package:wan_android/app/modules/entity/hot_key_entity.dart';
 import 'package:wan_android/core/page/base/base_controller.dart';
 import 'package:wan_android/core/utils/overlay_utils.dart';
-import 'package:get/get.dart';
 
 import 'search_delegate_page.dart';
 
@@ -91,7 +92,7 @@ class SearchSuggestionsController extends BaseController {
 
   @override
   void onReady() {
-    hotKeywords().then((e) {
+    fetchHotKeywords().then((e) {
       if (e != null && e.isNotEmpty) {
         hotKeyData = e.map((data) => data.name ?? "").toList();
       }
@@ -101,8 +102,8 @@ class SearchSuggestionsController extends BaseController {
     });
   }
 
-  Future<List<HotKeyEntity>?> hotKeywords() =>
-      WanAndroidRepository.hotKeywords();
+  Future<List<HotKeyEntity>?> fetchHotKeywords() =>
+      GlobeRepository.fetchHotKeywords();
 
   List<String> readSearchHistory() => WanAndroidStorage.readSearchHistory();
 

@@ -6,64 +6,64 @@ class WanAndroidApiPaths {
   static const baseUrl = "https://www.wanandroid.com/";
 
   /// 文章列表
-  static const String articleList = baseUrl + "article/list/";
+  static const String articleList = "${baseUrl}article/list/";
 
   /// 置顶文章
-  static const String topArticle = baseUrl + "article/top/json";
+  static const String topArticle = "${baseUrl}article/top/json";
 
   /// 获取banner
-  static const String banner = baseUrl + "banner/json";
+  static const String banner = "${baseUrl}banner/json";
 
   /// 登录
-  static const String login = baseUrl + "user/login";
+  static const String login = "${baseUrl}user/login";
 
   /// 注册
-  static const String register = baseUrl + "user/register";
+  static const String register = "${baseUrl}user/register";
 
   /// 退出登录
-  static const String logout = baseUrl + "user/logout/json";
+  static const String logout = "${baseUrl}user/logout/json";
 
   /// 项目分类
-  static const String projectCategory = baseUrl + "project/tree/json";
+  static const String projectCategory = "${baseUrl}project/tree/json";
 
   /// 项目列表
-  static const String projectList = baseUrl + "project/list/";
+  static const String projectList = "${baseUrl}project/list/";
 
   /// 搜索
-  static const String searchForKeyword = baseUrl + "article/query/";
+  static const String searchForKeyword = "${baseUrl}article/query/";
 
   /// 获取搜索热词
-  static const String hotKeywords = baseUrl + "hotkey/json";
+  static const String hotKeywords = "${baseUrl}hotkey/json";
 
   /// 点击收藏文章
-  static const String collectArticle = baseUrl + "lg/collect/";
+  static const String collectArticle = "${baseUrl}lg/collect/";
 
   /// 取消收藏文章
-  static const String unCollectArticle = baseUrl + "lg/uncollect_originId/";
+  static const String unCollectArticle = "${baseUrl}lg/uncollected_originId/";
 
   /// 获取收藏文章列表
-  static const String collectList = baseUrl + "lg/collect/list/";
+  static const String collectList = "${baseUrl}lg/collect/list/";
 
   /// 公众号
-  static const String wxArticleTab = baseUrl + "wxarticle/chapters/json";
+  static const String wxArticleTab = "${baseUrl}article/chapters/json";
 
   /// 某个公众号的文章列表  wxarticle/list/408/1/json
-  static const String wxArticleList = baseUrl + "wxarticle/list/";
+  static const String wxArticleList = "${baseUrl}wxarticle/list/";
 
   /// 学习体系
-  static const String treeList = baseUrl + "tree/json";
+  static const String treeList = "${baseUrl}tree/json";
 
   /// 导航  navi/json
-  static const String naviList = baseUrl + "navi/json";
+  static const String naviList = "${baseUrl}navi/json";
 
   /// 用户信息
-  static const String userinfo = baseUrl + "user/lg/userinfo/json";
+  static const String userinfo = "${baseUrl}user/lg/userinfo/json";
 
   /// 个人积分列表
-  static const String coinList = baseUrl + "lg/coin/list/";
+  static const String coinList = "${baseUrl}lg/coin/list/";
 
   /// 积分排行榜
-  static const String coinRankList = baseUrl + "coin/rank/";
+  static const String coinRankList = "${baseUrl}coin/rank/";
 }
 
 /// =====================================================================================================================
@@ -134,15 +134,15 @@ class Repository {
       get("${WanAndroidApiPaths.projectList}$page/json?cid=$id", force);
 
   /// 导航系列数据
-  static Future<dynamic> fetchNaviTabs({bool force = false}) =>
+  static Future<dynamic> fetchNaviList({bool force = false}) =>
       get(WanAndroidApiPaths.naviList, force);
 
   /// 学习体系系列数据
-  static Future<dynamic> fetchTreeTabs({bool force = false}) =>
+  static Future<dynamic> fetchTreeList({bool force = false}) =>
       get(WanAndroidApiPaths.treeList, force);
 
   /// 体系列表
-  static Future<dynamic> fetchTreeList(String id, String page,
+  static Future<dynamic> fetchTreeDetailList(String id, String page,
           {bool force = false}) =>
       get("${WanAndroidApiPaths.articleList}$page/json?cid=$id", force);
 

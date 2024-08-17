@@ -25,13 +25,13 @@ class V1Api extends BaseApi {
     return ok(await Repository.fetchHomePageArticle(page));
   }
 
-  @Route.get('/wxarticle/list/<id>/<page>')
+  @Route.get('/platform/list/<id>/<page>')
   Future<Response> fetchPlatformList(
       Request request, String id, String page) async {
     return ok(await Repository.fetchPlatformList(id, page));
   }
 
-  @Route.get('/wxarticle/chapters')
+  @Route.get('/platform/tabs')
   Future<Response> fetchPlatformTabs(Request request) async {
     return ok(await Repository.fetchPlatformTabs());
   }
@@ -47,20 +47,20 @@ class V1Api extends BaseApi {
     return ok(await Repository.fetchProjectList(id, page));
   }
 
-  @Route.get('/navi/tabs')
-  Future<Response> fetchNaviTabs(Request request) async {
-    return ok(await Repository.fetchNaviTabs());
+  @Route.get('/navi/list')
+  Future<Response> fetchNaviList(Request request) async {
+    return ok(await Repository.fetchNaviList());
   }
 
-  @Route.get('/tree/tabs')
-  Future<Response> fetchTreeTabs(Request request) async {
-    return ok(await Repository.fetchTreeTabs());
+  @Route.get('/tree/list')
+  Future<Response> fetchTreeList(Request request) async {
+    return ok(await Repository.fetchTreeList());
   }
 
-  @Route.get('/tree/list/<id>/<page>')
-  Future<Response> fetchTreeList(
+  @Route.get('/tree/detail/list/<id>/<page>')
+  Future<Response> fetchTreeDetailList(
       Request request, String id, String page) async {
-    return ok(await Repository.fetchTreeList(id, page));
+    return ok(await Repository.fetchTreeDetailList(id, page));
   }
 
   @Route.get('/hotkey')
