@@ -45,7 +45,7 @@ class WanAndroidApiPaths {
   static const String collectList = "${baseUrl}lg/collect/list/";
 
   /// 公众号
-  static const String wxArticleTab = "${baseUrl}article/chapters/json";
+  static const String wxArticleTab = "${baseUrl}wxarticle/chapters/json";
 
   /// 某个公众号的文章列表  wxarticle/list/408/1/json
   static const String wxArticleList = "${baseUrl}wxarticle/list/";
@@ -122,7 +122,7 @@ class Repository {
 
   /// 公众号Tab
   static Future<dynamic> fetchPlatformTabs({bool force = false}) =>
-      get(WanAndroidApiPaths.wxArticleTab, false);
+      get(WanAndroidApiPaths.wxArticleTab, force);
 
   /// 项目Tab
   static Future<dynamic> fetchProjectTabs({bool force = false}) =>
