@@ -14,7 +14,7 @@ UserInfoEntity $UserInfoEntityFromJson(Map<String, dynamic> json) {
   if (collectArticleInfo != null) {
     userInfoEntity.collectArticleInfo = collectArticleInfo;
   }
-  final User? userInfo = JsonConvert.fromJsonAsT(json['userInfo']);
+  final User? userInfo = jsonConvert.convert<User>(json['userInfo']);
   if (userInfo != null) {
     userInfoEntity.userInfo = userInfo;
   }
@@ -43,32 +43,32 @@ extension UserInfoEntityExtension on UserInfoEntity {
 }
 
 UserCoinInfo $UserCoinInfoFromJson(Map<String, dynamic> json) {
-  final UserCoinInfo userInfoCoinInfo = UserCoinInfo();
+  final UserCoinInfo userCoinInfo = UserCoinInfo();
   final int? coinCount = jsonConvert.convert<int>(json['coinCount']);
   if (coinCount != null) {
-    userInfoCoinInfo.coinCount = coinCount;
+    userCoinInfo.coinCount = coinCount;
   }
   final int? level = jsonConvert.convert<int>(json['level']);
   if (level != null) {
-    userInfoCoinInfo.level = level;
+    userCoinInfo.level = level;
   }
   final String? nickname = jsonConvert.convert<String>(json['nickname']);
   if (nickname != null) {
-    userInfoCoinInfo.nickname = nickname;
+    userCoinInfo.nickname = nickname;
   }
   final String? rank = jsonConvert.convert<String>(json['rank']);
   if (rank != null) {
-    userInfoCoinInfo.rank = rank;
+    userCoinInfo.rank = rank;
   }
   final int? userId = jsonConvert.convert<int>(json['userId']);
   if (userId != null) {
-    userInfoCoinInfo.userId = userId;
+    userCoinInfo.userId = userId;
   }
   final String? username = jsonConvert.convert<String>(json['username']);
   if (username != null) {
-    userInfoCoinInfo.username = username;
+    userCoinInfo.username = username;
   }
-  return userInfoCoinInfo;
+  return userCoinInfo;
 }
 
 Map<String, dynamic> $UserCoinInfoToJson(UserCoinInfo entity) {
@@ -82,7 +82,7 @@ Map<String, dynamic> $UserCoinInfoToJson(UserCoinInfo entity) {
   return data;
 }
 
-extension UserInfoCoinInfoExtension on UserCoinInfo {
+extension UserCoinInfoExtension on UserCoinInfo {
   UserCoinInfo copyWith({
     int? coinCount,
     int? level,
@@ -103,13 +103,13 @@ extension UserInfoCoinInfoExtension on UserCoinInfo {
 
 UserCollectArticleInfo $UserCollectArticleInfoFromJson(
     Map<String, dynamic> json) {
-  final UserCollectArticleInfo userInfoCollectArticleInfo =
+  final UserCollectArticleInfo userCollectArticleInfo =
       UserCollectArticleInfo();
   final int? count = jsonConvert.convert<int>(json['count']);
   if (count != null) {
-    userInfoCollectArticleInfo.count = count;
+    userCollectArticleInfo.count = count;
   }
-  return userInfoCollectArticleInfo;
+  return userCollectArticleInfo;
 }
 
 Map<String, dynamic> $UserCollectArticleInfoToJson(
@@ -119,7 +119,7 @@ Map<String, dynamic> $UserCollectArticleInfoToJson(
   return data;
 }
 
-extension UserInfoCollectArticleInfoExtension on UserCollectArticleInfo {
+extension UserCollectArticleInfoExtension on UserCollectArticleInfo {
   UserCollectArticleInfo copyWith({
     int? count,
   }) {

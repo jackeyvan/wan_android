@@ -48,6 +48,7 @@ class Strings {
   static const String password = "password";
   static const String rePassword = "rePassword";
   static const String collection = "collection";
+  static const String myCollection = "myCollection";
 
   static const lagerTextSize = 30.0;
   static const bigTextSize = 23.0;

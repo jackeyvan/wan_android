@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:wan_android/core/page/widgets/keep_alive_wrapper.dart';
 import 'package:get/get.dart';
+import 'package:wan_android/core/page/widgets/keep_alive_wrapper.dart';
 
 /// 封装基类Controller，绑定数据T，可以根据业务情况，展示不同的页面
 class BaseController<T> extends GetxController with StateMixin<T> {
@@ -12,17 +12,17 @@ class BaseController<T> extends GetxController with StateMixin<T> {
 
   /// 展示空页面
   void showEmptyPage() {
-    change(null, status: RxStatus.empty());
+    change(value, status: RxStatus.empty());
   }
 
   /// 展示加载页面
   void showLoadingPage() {
-    change(null, status: RxStatus.loading());
+    change(value, status: RxStatus.loading());
   }
 
   /// 展示异常页面
   void showErrorPage(String? msg) {
-    change(null, status: RxStatus.error(msg));
+    change(value, status: RxStatus.error(msg));
   }
 
   /// 如果页面不需要填充loading页面，也可以使用Dialog填充

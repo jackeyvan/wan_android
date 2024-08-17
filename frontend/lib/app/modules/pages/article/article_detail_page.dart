@@ -2,9 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:get/get.dart';
 import 'package:wan_android/app/modules/base/scaffold_page.dart';
 import 'package:wan_android/app/modules/pages/article/article_detail_controller.dart';
-import 'package:get/get.dart';
 
 class ArticleDetailPage extends ScaffoldPage<ArticleDetailController> {
   const ArticleDetailPage({super.key});
@@ -47,8 +47,10 @@ class ArticleDetailPage extends ScaffoldPage<ArticleDetailController> {
           onPressed: () => controller.launchInBrowserView(),
           icon: const Icon(Icons.open_in_browser_outlined)),
       IconButton(
-          onPressed: () => controller.copyUrl(),
-          icon: const Icon(Icons.copy_all_outlined)),
+          onPressed: () => controller.favorite(),
+          icon: Obx(() => Icon(controller.isCollected.value
+              ? Icons.favorite_outlined
+              : Icons.favorite_border))),
     ];
   }
 }

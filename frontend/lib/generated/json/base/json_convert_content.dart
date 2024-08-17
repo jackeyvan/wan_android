@@ -8,6 +8,7 @@ import 'package:wan_android/app/modules/entity/app_info_entity.dart';
 import 'package:wan_android/app/modules/entity/article_entity.dart';
 import 'package:wan_android/app/modules/entity/article_tab_entity.dart';
 import 'package:wan_android/app/modules/entity/banner_entity.dart';
+import 'package:wan_android/app/modules/entity/collect_article_entity.dart';
 import 'package:wan_android/app/modules/entity/hot_key_entity.dart';
 import 'package:wan_android/app/modules/entity/score_rank_entity.dart';
 import 'package:wan_android/app/modules/entity/structure_entity.dart';
@@ -189,6 +190,12 @@ class JsonConvert {
               (Map<String, dynamic> e) => BannerEntity.fromJson(e))
           .toList() as M;
     }
+    if (<CollectArticleEntity>[] is M) {
+      return data
+          .map<CollectArticleEntity>(
+              (Map<String, dynamic> e) => CollectArticleEntity.fromJson(e))
+          .toList() as M;
+    }
     if (<HotKeyEntity>[] is M) {
       return data
           .map<HotKeyEntity>(
@@ -262,6 +269,7 @@ class JsonConvertClassCollection {
     (ArticleTags).toString(): ArticleTags.fromJson,
     (ArticleTabEntity).toString(): ArticleTabEntity.fromJson,
     (BannerEntity).toString(): BannerEntity.fromJson,
+    (CollectArticleEntity).toString(): CollectArticleEntity.fromJson,
     (HotKeyEntity).toString(): HotKeyEntity.fromJson,
     (ScoreListEntity).toString(): ScoreListEntity.fromJson,
     (ScoreEntity).toString(): ScoreEntity.fromJson,
