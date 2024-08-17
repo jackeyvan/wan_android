@@ -7,3 +7,5 @@ analysis_options.yaml
 pubspec.lock
 
 .dart_tool
+
+/database/
