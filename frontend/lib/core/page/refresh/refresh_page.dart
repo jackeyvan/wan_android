@@ -17,12 +17,10 @@ abstract class GetRefreshPage<C extends GetRefreshController>
       onLoad: controller.onLoadMore,
       header: const MaterialHeader(),
       footer: const MaterialFooter(),
-      canRefreshAfterNoMore: true,
-      canLoadAfterNoMore: false,
-
-      // canLoadAfterNoMore: controller.controlFinishLoad(),
-      // canRefreshAfterNoMore: controller.enableControlFinishRefresh(),
-      // firstRefresh: controller.firstRefresh(),
+      canRefreshAfterNoMore: controller.canRefreshAfterNoMore,
+      canLoadAfterNoMore: controller.canLoadAfterNoMore,
+      resetAfterRefresh: controller.resetAfterRefresh,
+      refreshOnStart: controller.refreshOnStart,
       child: builder(controller.data),
     );
   }

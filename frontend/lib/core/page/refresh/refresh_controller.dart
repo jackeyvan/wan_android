@@ -9,12 +9,7 @@ abstract class GetRefreshController<T> extends BaseController {
 
   @override
   void onReady() {
-    /// 如果页面一进来就要展示刷新头部，只调用callRefresh
-    if (startRefresh()) {
-      callRefresh();
-    } else {
-      onRefresh();
-    }
+    onRefresh();
   }
 
   /// 刷新数据
@@ -51,8 +46,17 @@ abstract class GetRefreshController<T> extends BaseController {
     refreshController.callRefresh();
   }
 
-  /// 第一次进入页面刷新
-  bool startRefresh() => false;
+  /// 没有更多数据状态之后是否可以刷新
+  bool get canRefreshAfterNoMore => true;
+
+  /// 没有更多数据状态是否可以加载更多
+  bool get canLoadAfterNoMore => false;
+
+  /// 刷新之后重置
+  bool get resetAfterRefresh => false;
+
+  /// 开始构建时进行刷新加载
+  bool get refreshOnStart => false;
 
   /// 销毁时刷新控件一起销毁
   @override
@@ -80,13 +84,15 @@ abstract class GetRefreshListController<T>
     page = initPage;
 
     loadListData(page, true).then((result) {
+      var refreshResult = IndicatorResult.success;
+
       if (result.isNotEmpty) {
         data = result;
         showSuccessPage();
 
         /// 刷新的时候，没有更多数据需要去掉上拉加载，没有有更多数据则要重置加载状态
         if (result.length < pageSize) {
-          refreshController;
+          refreshResult = IndicatorResult.noMore;
         }
       } else {
         if (data.isEmpty) {
@@ -96,9 +102,10 @@ abstract class GetRefreshListController<T>
 
       /// 刷新完成，这里要注意一定是先展示成功的页面，加载EasyRefresh控件
       /// 再调用RefreshController的方法才有用，不然会报错。
-      refreshController.finishRefresh();
+      refreshController.finishRefresh(refreshResult, true);
     }).catchError((error, _) {
       /// 如果有数据则提示吐司，如果没有数据则展示错误图
+      refreshController.finishRefresh();
       if (data.isNotEmpty) {
         OverlayUtils.showToast("刷新失败了");
       } else {
