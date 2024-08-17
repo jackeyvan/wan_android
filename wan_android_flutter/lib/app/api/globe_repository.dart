@@ -12,9 +12,7 @@ import 'package:wan_android/core/net/cache/cache.dart';
 
 class GlobeApiPaths {
   /// 基础url
-  static const baseUrl =
-      "https://wan-android-backend-4vnd8kb-jackey.globeapp.dev/";
-  // https://wan-android-backend-4vnd8kb-jackey.globeapp.dev
+  static const baseUrl = "https://wan-android-backend.globeapp.dev/";
 
   /// 文章列表
   static const String articleList = "api/v1/article/list";
