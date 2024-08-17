@@ -65,6 +65,7 @@ const zhCN = {
   'rePassword': '重复密码',
   'score': '积分',
   'collection': '收藏',
+  'myCollection': '我的收藏',
   'rank': '排行榜',
 };
 
@@ -104,5 +105,6 @@ const enUS = {
   'rePassword': 'Password again',
   'score': 'Point',
   'collection': 'Collection',
+  'myCollection': 'My Collection',
   'rank': 'Rank',
 };

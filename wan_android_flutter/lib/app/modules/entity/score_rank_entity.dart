@@ -18,9 +18,9 @@ class ScoreListEntity {
   ScoreListEntity();
 
   factory ScoreListEntity.fromJson(Map<String, dynamic> json) =>
-      $ScoreRankListEntityFromJson(json);
+      $ScoreListEntityFromJson(json);
 
-  Map<String, dynamic> toJson() => $ScoreRankListEntityToJson(this);
+  Map<String, dynamic> toJson() => $ScoreListEntityToJson(this);
 
   @override
   String toString() {
@@ -45,9 +45,9 @@ class ScoreEntity {
   ScoreEntity();
 
   factory ScoreEntity.fromJson(Map<String, dynamic> json) =>
-      $ScoreRankEntityFromJson(json);
+      $ScoreEntityFromJson(json);
 
-  Map<String, dynamic> toJson() => $ScoreRankEntityToJson(this);
+  Map<String, dynamic> toJson() => $ScoreEntityToJson(this);
 
   @override
   String toString() {

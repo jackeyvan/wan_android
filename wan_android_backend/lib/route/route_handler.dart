@@ -12,7 +12,7 @@ class RouteHandler {
   Router get _apiRouter {
     final apiRouter = Router();
 
-    apiRouter.mount("/v1/banner", BannerApi().router.call);
+    apiRouter.mount("/v1", V1Api().router.call);
 
     return apiRouter;
   }

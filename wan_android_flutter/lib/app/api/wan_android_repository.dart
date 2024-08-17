@@ -43,23 +43,17 @@ class WanAndroidApiPaths {
   /// 搜索
   static const String searchForKeyword = "article/query/";
 
-  /// 广场页列表
-  static const String plazaArticleList = "user_article/list/";
-
-  /// 点击收藏
-  static const String collectArticle = "lg/collect/";
-
-  /// 取消收藏
-  static const String unCollectArticle = "lg/uncollect_originId/";
-
   /// 获取搜索热词
   static const String hotKeywords = "hotkey/json";
 
+  /// 点击收藏文章
+  static const String collectArticle = "lg/collect/";
+
+  /// 取消收藏文章
+  static const String unCollectArticle = "lg/uncollect_originId/";
+
   /// 获取收藏文章列表
   static const String collectList = "lg/collect/list/";
-
-  /// 收藏网站列表
-  static const String collectWebaddressList = "lg/collect/usertools/json";
 
   /// 公众号
   static const String wxArticleTab = "wxarticle/chapters/json";
@@ -140,7 +134,8 @@ class WanAndroidRepository {
 
   /// 积分列表
   static Future<ScoreListEntity?> fetchCoinList(int page) =>
-      _api.get<ScoreListEntity>("${WanAndroidApiPaths.coinList}$page/json");
+      _api.get<ScoreListEntity>("${WanAndroidApiPaths.coinList}$page/json",
+          cacheMode: CacheMode.remoteOnly);
 
   /// 积分排行榜
   static Future<ScoreListEntity?> fetchCoinRankList(int page) =>
@@ -188,7 +183,7 @@ class WanAndroidRepository {
 
   /// 退出登录
   static Future logout() {
-    return _api.get(WanAndroidApiPaths.logout);
+    return _api.get(WanAndroidApiPaths.logout, cacheMode: CacheMode.remoteOnly);
   }
 
   /// 用户信息
@@ -197,9 +192,23 @@ class WanAndroidRepository {
         cacheMode: CacheMode.remoteOnly);
   }
 
-  /// 用户收藏列表
-  static Future<dynamic> fetchUserCollection(int page) {
-    return _api.get(WanAndroidApiPaths.collectList + "$page/json");
+  /// 用户收藏文章列表
+  static Future<ArticleListEntity?> fetchUserCollection(int page) {
+    return _api.get<ArticleListEntity>(
+        "${WanAndroidApiPaths.collectList}$page/json",
+        cacheMode: CacheMode.remoteOnly);
+  }
+
+  /// 收藏文章
+  static Future<dynamic> postCollectArticle(String id) {
+    return _api.post("${WanAndroidApiPaths.collectArticle}$id/json",
+        cacheMode: CacheMode.remoteOnly);
+  }
+
+  /// 取消收藏文章
+  static Future<dynamic> cancelCollectArticle(String id) {
+    return _api.post("${WanAndroidApiPaths.unCollectArticle}$id/json",
+        cacheMode: CacheMode.remoteOnly);
   }
 }
 
@@ -226,5 +235,20 @@ class WanAndroidStorage {
   ///  清空历史记录
   static void clearSearchHistory() {
     Storage.remove(Keys.searchHistory);
+  }
+
+  ///  本地动态收藏文章和网址
+  static void saveCollect(String key, String id) {
+    Storage.write(key, id);
+  }
+
+  /// 获取本地收藏状态
+  static String? readCollect(String key) {
+    return Storage.read<String>(key);
+  }
+
+  /// 取消收藏
+  static void removeCollect(String key) {
+    Storage.remove(key);
   }
 }

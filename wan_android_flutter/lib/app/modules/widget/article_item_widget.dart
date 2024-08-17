@@ -4,7 +4,6 @@ import 'package:wan_android/app/const/styles.dart';
 import 'package:wan_android/app/modules/entity/article_entity.dart';
 import 'package:wan_android/app/routes/routes.dart';
 import 'package:wan_android/core/init/init_core.dart';
-import 'package:wan_android/core/init/themes.dart';
 
 class ArticleItemWidget extends StatelessWidget {
   final ArticleEntity articleEntity;
@@ -42,7 +41,7 @@ class ArticleItemWidget extends StatelessWidget {
                             child: Wrap(
                           children: [
                             ///  标签
-                            buildTagText(),
+                            buildTagText(context),
 
                             ///  作者或者分享人
                             buildAuthorText(),
@@ -107,11 +106,13 @@ class ArticleItemWidget extends StatelessWidget {
   }
 
   ///  标签
-  Widget buildTagText() {
+  Widget buildTagText(BuildContext context) {
+    final color = Theme.of(context).colorScheme.primary;
+
     final tags = articleEntity.tags;
     if (tags != null && tags.isNotEmpty) {
       return paddingText(const EdgeInsets.only(right: 12), "${tags[0].name}",
-          style: TextStyle(color: AppTheme.getColorScheme().primary));
+          style: TextStyle(color: color));
     }
     return const SizedBox.shrink();
   }

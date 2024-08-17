@@ -1,11 +1,3 @@
-class LocalStyles {
-  // static const IconData PUSH_ITEM_EDIT = Icons.mode_edit;
-}
-
-class LocalIcons {
-  // static const String FONT_FAMILY = 'wxcIconFont';
-}
-
 ///文本样式
 class Strings {
   static const String github =
@@ -48,6 +40,7 @@ class Strings {
   static const String password = "password";
   static const String rePassword = "rePassword";
   static const String collection = "collection";
+  static const String myCollection = "myCollection";
 
   static const lagerTextSize = 30.0;
   static const bigTextSize = 23.0;
@@ -77,14 +70,12 @@ class Strings {
         .replaceAll(RegExp(r'<[^>]*>|&times;'), '×')
         .replaceAll(RegExp(r'<[^>]*>|&divide;'), '÷')
         .replaceAll(RegExp(r'<[^>]*>|&lsquo;'), '"')
+        .replaceAll(RegExp(r'<[^>]*>|&ldquo;'), '"')
         .replaceAll(RegExp(r'<[^>]*>|&rsquo;'), '"')
+        .replaceAll(RegExp(r'<[^>]*>|&rdquo;'), '"')
         .replaceAll(RegExp(r'<[^>]*>|&gt;'), '>')
         .replaceAll(RegExp(r'<[^>]*>|&lt;'), '<')
         .replaceAll(RegExp(r'<[^>]*>|&#124;'), '|')
         .replaceAll(RegExp(r'<[^>]*>|&mdash;'), '—');
   }
-}
-
-class FontSize {
-  // static const lagerTextSize = 30.0;
 }

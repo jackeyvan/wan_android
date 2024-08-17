@@ -18,5 +18,12 @@ class Schedule {
   /// 后台加载数据
   void fetchWanAndroidApi() {
     Repository.fetchBanner(force: true);
+    Repository.fetchHomePageArticle(0.toString(), force: true);
+    Repository.fetchTopArticle(force: true);
+    Repository.fetchPlatformTabs(force: true);
+    Repository.fetchProjectTabs(force: true);
+    Repository.fetchNaviTabs(force: true);
+    Repository.fetchTreeTabs(force: true);
+    Repository.fetchHotKeywords(force: true);
   }
 }
