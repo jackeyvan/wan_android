@@ -20,8 +20,6 @@ class GlobeApi extends BaseApi {
     dio.options.baseUrl = GlobeApiPaths.baseUrl;
 
     dio.options.connectTimeout = const Duration(seconds: 15);
-    dio.options.receiveTimeout = const Duration(seconds: 15);
-    dio.options.sendTimeout = const Duration(seconds: 15);
 
     /// 缓存拦截器
     dio.interceptors.add(CacheInterceptor(
@@ -72,8 +70,9 @@ class GlobeApi extends BaseApi {
 class ApiInterceptor extends InterceptorsWrapper {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    options.headers['version'] = "1.0.0";
-    options.headers['platform'] = "android";
+    /// TODO 添加了header之后，在web端会有跨域问题
+    // options.headers['version'] = "1.0.0";
+    // options.headers['platform'] = "android";
 
     super.onRequest(options, handler);
   }
