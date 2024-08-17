@@ -1,6 +1,6 @@
 {
-    "name": "flutter_wan_android",
-    "short_name": "flutter_wan_android",
+    "name": "wan_android",
+    "short_name": "wan_android",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
