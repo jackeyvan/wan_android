@@ -1,7 +1,6 @@
 import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
-
-import '../api/api.dart';
+import 'package:wan_android_backend/api/api.dart';
 
 class RouteHandler {
   Response _rootHandler(Request req) {

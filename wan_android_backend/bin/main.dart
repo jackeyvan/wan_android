@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart';
+import 'package:shelf_cors_headers/shelf_cors_headers.dart';
 import 'package:wan_android_backend/db/hive_box.dart';
 import 'package:wan_android_backend/route/middleware.dart';
 import 'package:wan_android_backend/route/route_handler.dart';
@@ -18,9 +19,12 @@ void main(List<String> args) async {
 
   final ip = InternetAddress.anyIPv4;
 
+  final overrideHeaders = {'Content-Type': 'application/json;charset=utf-8'};
+
   final handler = Pipeline()
       .addMiddleware(logRequests())
       .addMiddleware(rejectBadRequests())
+      .addMiddleware(corsHeaders(headers: overrideHeaders))
       .addHandler(RouteHandler().router.call);
 
   final port = int.parse(Platform.environment['PORT'] ?? '8080');
