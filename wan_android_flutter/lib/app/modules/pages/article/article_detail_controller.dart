@@ -1,7 +1,8 @@
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:wan_android/app/api/globe_repository.dart';
+import 'package:wan_android/app/api/globe/globe_repository.dart';
+import 'package:wan_android/app/api/globe/globe_storage.dart';
 import 'package:wan_android/app/const/styles.dart';
 import 'package:wan_android/app/modules/base/scaffold_controller.dart';
 import 'package:wan_android/app/modules/entity/article_entity.dart';

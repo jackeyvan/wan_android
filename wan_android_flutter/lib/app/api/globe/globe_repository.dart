@@ -1,8 +1,7 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
-import 'package:wan_android/app/api/globe_api.dart';
-import 'package:wan_android/app/const/keys.dart';
+import 'package:wan_android/app/api/globe/globe_api.dart';
 import 'package:wan_android/app/modules/entity/article_entity.dart';
 import 'package:wan_android/app/modules/entity/article_tab_entity.dart';
 import 'package:wan_android/app/modules/entity/banner_entity.dart';
@@ -11,77 +10,9 @@ import 'package:wan_android/app/modules/entity/score_rank_entity.dart';
 import 'package:wan_android/app/modules/entity/structure_entity.dart';
 import 'package:wan_android/app/modules/entity/user_entity.dart';
 import 'package:wan_android/app/modules/entity/user_info_entity.dart';
-import 'package:wan_android/core/init/storage.dart';
 import 'package:wan_android/core/net/cache/cache.dart';
 
-class GlobeApiPaths {
-  /// 基础url
-  // static const baseUrl = "https://wan-android-backend.globeapp.dev/";
-  static const baseUrl = "http://0.0.0.0:8080/";
-
-  /// 文章列表
-  static const String articleList = "api/v1/article/list";
-
-  /// 置顶文章
-  static const String topArticle = "api/v1/article/top";
-
-  /// 获取banner
-  static const String banner = "api/v1/banner";
-
-  /// 登录
-  static const String login = "api/v1/user/login";
-
-  /// 注册
-  static const String register = "api/v1/user/register";
-
-  /// 退出登录
-  static const String logout = "api/v1/user/logout";
-
-  /// 项目分类
-  static const String projectTabs = "api/v1/project/tabs";
-
-  /// 项目列表
-  static const String projectList = "api/v1/project/list";
-
-  /// 搜索
-  static const String searchForKeyword = "api/v1/search";
-
-  /// 获取搜索热词
-  static const String hotKeywords = "api/v1/hotkey";
-
-  /// 点击收藏文章
-  static const String collectArticle = "api/v1/user/collect";
-
-  /// 取消收藏文章
-  static const String unCollectArticle = "api/v1/user/un_collect";
-
-  /// 获取收藏文章列表
-  static const String collectList = "api/v1/user/collect/list";
-
-  /// 公众号
-  static const String wxArticleTab = "api/v1/platform/tabs";
-
-  /// 某个公众号的文章列表
-  static const String wxArticleList = "api/v1/platform/list";
-
-  /// 学习体系
-  static const String treeList = "api/v1/tree/list";
-
-  /// 体系详情列表
-  static const String treeDetailList = "api/v1/tree/detail/list";
-
-  /// 导航  navi/json
-  static const String naviList = "api/v1/navi/list";
-
-  /// 用户信息
-  static const String userinfo = "api/v1/user/info";
-
-  /// 个人积分列表
-  static const String coinList = "api/v1/user/points";
-
-  /// 积分排行榜
-  static const String coinRankList = "api/v1/point/rank";
-}
+import 'globe_paths.dart';
 
 /// =====================================================================================================================
 /// 接口封装，提供玩安卓所有远程接口
@@ -212,62 +143,5 @@ class GlobeRepository {
   static Future<dynamic> unCollectArticle(String id) {
     return _api.post("${GlobeApiPaths.unCollectArticle}/$id",
         cacheMode: CacheMode.remoteOnly);
-  }
-}
-
-/// =====================================================================================================================
-/// 本地存储封装，提供所有本地数据
-/// =====================================================================================================================
-class GlobeStorage {
-  ///  搜索历史记录
-  static List<String> readSearchHistory() {
-    final history = Storage.read<List>(Keys.searchHistory);
-    return (history ?? []).map((e) => e as String).toList();
-  }
-
-  /// 添加搜索历史记录
-  static void writeSearchHistory(String value) {
-    final history = readSearchHistory();
-    if (history.contains(value)) {
-      history.remove(value);
-    }
-    history.insert(0, value);
-    Storage.write(Keys.searchHistory, history);
-  }
-
-  ///  清空历史记录
-  static void clearSearchHistory() {
-    Storage.remove(Keys.searchHistory);
-  }
-
-  ///  本地动态收藏文章和网址
-  static void saveCollect(String key, String id) {
-    Storage.write(key, id);
-  }
-
-  /// 获取本地收藏状态
-  static String? readCollect(String key) {
-    return Storage.read<String>(key);
-  }
-
-  /// 取消收藏
-  static void removeCollect(String key) {
-    Storage.remove(key);
-  }
-
-  static String? readRememberAccount() {
-    return Storage.read(Keys.rememberAccount);
-  }
-
-  static void writeRememberAccount(String value) {
-    Storage.write(Keys.rememberAccount, value);
-  }
-
-  static String? readPasswordAccount() {
-    return Storage.read(Keys.rememberPassword);
-  }
-
-  static void writePasswordAccount(String value) {
-    Storage.write(Keys.rememberPassword, value);
   }
 }

@@ -4,7 +4,7 @@ import 'dart:math' as math;
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_android/app/api/globe_repository.dart';
+import 'package:wan_android/app/api/globe/globe_repository.dart';
 import 'package:wan_android/app/const/styles.dart';
 import 'package:wan_android/app/modules/entity/user_entity.dart';
 import 'package:wan_android/app/modules/entity/user_info_entity.dart';

@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:wan_android/app/api/pgyer_repository.dart';
 import 'package:wan_android/core/net/api_error.dart';
 import 'package:wan_android/core/net/base_api.dart';
 import 'package:wan_android/generated/json/base/json_convert_content.dart';
+
+import 'pgyer_repository.dart';
 
 class PgyerApi extends BaseApi {
   @override

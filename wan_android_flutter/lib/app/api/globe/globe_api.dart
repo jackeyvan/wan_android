@@ -2,13 +2,14 @@ import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:wan_android/app/api/cookie/cookie_interceptor.dart';
 import 'package:wan_android/app/api/cookie/cookie_storage.dart';
-import 'package:wan_android/app/api/globe_repository.dart';
 import 'package:wan_android/app/modules/entity/user_entity.dart';
 import 'package:wan_android/core/net/api_error.dart';
 import 'package:wan_android/core/net/base_api.dart';
 import 'package:wan_android/core/net/cache/cache.dart';
 import 'package:wan_android/core/net/cache/cache_Interceptor.dart';
 import 'package:wan_android/generated/json/base/json_convert_content.dart';
+
+import 'globe_paths.dart';
 
 /// 使用 Globe 服务器部署的后端API，对玩安卓的三方API做一些简单封装
 /// 使用逻辑和玩安卓的API一样，解决玩安卓API在Web上的跨域问题

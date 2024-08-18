@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_android/app/api/globe_repository.dart';
+import 'package:wan_android/app/api/globe/globe_repository.dart';
 import 'package:wan_android/app/const/styles.dart';
 import 'package:wan_android/app/modules/base/tab_controller.dart';
 import 'package:wan_android/app/modules/entity/article_entity.dart';

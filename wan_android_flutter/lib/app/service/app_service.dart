@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:wan_android/app/api/globe_api.dart';
-import 'package:wan_android/app/api/pgyer_api.dart';
+import 'package:wan_android/app/api/globe/globe_api.dart';
+import 'package:wan_android/app/api/pgyer/pgyer_api.dart';
 import 'package:wan_android/core/init/init_service.dart';
 
 /// 业务层初始化

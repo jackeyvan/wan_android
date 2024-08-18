@@ -1,7 +1,8 @@
-import 'package:wan_android/app/modules/entity/app_info_entity.dart';
 import 'package:get/get.dart';
+import 'package:wan_android/app/modules/entity/app_info_entity.dart';
 
 import 'pgyer_api.dart';
+
 
 class PgyerApiPaths {
   static const baseUrl = "https://www.pgyer.com/apiv2/";
