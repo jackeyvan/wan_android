@@ -1,9 +1,9 @@
+import 'package:get/get.dart';
 import 'package:wan_android/app/modules/pages/home/home_controller.dart';
 import 'package:wan_android/app/modules/pages/platform/platform_controller.dart';
 import 'package:wan_android/app/modules/pages/project/project_controller.dart';
-import 'package:wan_android/app/modules/pages/root/root_controller.dart';
+import 'package:wan_android/app/modules/pages/root/root_page.dart';
 import 'package:wan_android/app/modules/pages/structure/structure_controller.dart';
-import 'package:get/get.dart';
 
 /// 初始化的Binding
 ///

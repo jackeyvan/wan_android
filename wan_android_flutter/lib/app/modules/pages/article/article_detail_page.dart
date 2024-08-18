@@ -46,11 +46,13 @@ class ArticleDetailPage extends ScaffoldPage<ArticleDetailController> {
       IconButton(
           onPressed: () => controller.launchInBrowserView(),
           icon: const Icon(Icons.open_in_browser_outlined)),
-      IconButton(
-          onPressed: () => controller.favorite(),
-          icon: Obx(() => Icon(controller.isCollected.value
-              ? Icons.favorite_outlined
-              : Icons.favorite_border))),
+      GetPlatform.isWeb
+          ? const SizedBox.shrink()
+          : IconButton(
+              onPressed: () => controller.favorite(),
+              icon: Obx(() => Icon(controller.isCollected.value
+                  ? Icons.favorite_outlined
+                  : Icons.favorite_border))),
     ];
   }
 }

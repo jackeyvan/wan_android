@@ -1,29 +1,11 @@
 import 'package:shelf/shelf.dart';
 
-const _defaultHeadersList = [
-  'Accept',
-  'Accept-Encoding',
-  'Authorization',
-  'Content-Type',
-  'Dnt',
-  'Origin',
-  'User-Agent',
-];
-
-const _defaultMethodsList = [
-  'DELETE',
-  'GET',
-  'OPTIONS',
-  'PATCH',
-  'POST',
-  'PUT'
-];
-
+/// 彻底放开
 final _defaultHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Credentials': 'true',
-  'Access-Control-Allow-Headers': _defaultHeadersList.join(','),
-  'Access-Control-Allow-Methods': _defaultMethodsList.join(','),
+  'Access-Control-Allow-Headers': '*',
+  'Access-Control-Allow-Methods': '*',
   'Access-Control-Max-Age': '86400',
   'Content-Type': 'application/json;charset=utf-8',
 };

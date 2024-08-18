@@ -80,9 +80,9 @@ abstract class BaseApi {
 
     /// 更新缓存策略
     if (cacheMode != null) {
-      options.extra?.addAll({"cacheMode": cacheMode});
+      options.extra?["cacheMode"] = cacheMode;
     } else if (cacheExpire != null) {
-      options.extra?.addAll({"cacheExpire": cacheExpire.inMilliseconds});
+      options.extra?["cacheExpire"] = cacheExpire.inMilliseconds;
     }
 
     Future<Response> future;

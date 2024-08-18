@@ -88,8 +88,7 @@ class Repository {
         return _getCore(url, header);
       } else {
         // print("Local result = " + result);
-        print(
-            "Local result =============================================================");
+        print("Local result ==== $url");
         return Response(result, 200, headers: {
           HttpHeaders.contentTypeHeader: 'application/json; charset=utf-8',
         });
@@ -107,13 +106,12 @@ class Repository {
 
     if (path.isNotEmpty) {
       path = path.substring(0, path.length - 1);
-      url = url + "?" + path;
+      url = "$url?$path";
     }
 
     return http.post(Uri.parse(url), headers: header).then((response) {
       // print("Post request result = " + response.body);
-      print(
-          "Post request =============================================================");
+      print("Post request ===== $url");
       return response;
     }).catchError((e, s) {
       print(e.toString());
@@ -125,8 +123,7 @@ class Repository {
       String url, Map<String, String>? header) async {
     return http.get(Uri.parse(url), headers: header).then((response) {
       // print("Get request result" + response.body);
-      print(
-          "Get request =============================================================");
+      print("Get request ===== $url");
       HiveBox.put(url, response.body);
       return response;
     }).catchError((e, s) {

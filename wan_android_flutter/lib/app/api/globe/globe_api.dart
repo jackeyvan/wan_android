@@ -75,7 +75,17 @@ class ApiInterceptor extends InterceptorsWrapper {
     // options.headers['version'] = "1.0.0";
     // options.headers['platform'] = "android";
 
+    print("onRequest url = ${options.uri.toString()}");
+    print("onRequest header = ${options.headers}");
+
     super.onRequest(options, handler);
+  }
+
+  @override
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
+    // TODO: implement onResponse
+    print("onResponse header = ${response.headers}");
+    super.onResponse(response, handler);
   }
 }
 

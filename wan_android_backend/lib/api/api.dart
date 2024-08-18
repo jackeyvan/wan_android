@@ -88,7 +88,6 @@ class V1Api {
     final password = params["password"];
 
     final resp = await Repository.login(username, password);
-
     return Response.ok(resp.body, headers: _handleHeader(resp.headers));
   }
 
@@ -117,7 +116,6 @@ class V1Api {
 
   @Route.get('/user/info')
   Future<Response> fetchUserInfo(Request request) async {
-    print("header: ${request.headers}");
     final resp = await Repository.fetchUserInfo(header: request.headers);
     return Response.ok(resp.body, headers: _handleHeader(resp.headers));
   }

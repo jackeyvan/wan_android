@@ -69,6 +69,8 @@ class CookieInterceptor extends Interceptor {
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
+    print("cookie header: ${response.headers}");
+
     _saveCookies(response).then((_) => handler.next(response)).catchError(
       (dynamic e, StackTrace s) {
         final err = DioException(
