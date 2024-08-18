@@ -95,9 +95,11 @@ class ArticleDetailController extends ScaffoldController<ArticleEntity> {
       GlobeRepository.unCollectArticle(id).then((value) {
         GlobeStorage.removeCollect(id);
         OverlayUtils.showToast("取消收藏成功");
-      }).catchError((e, s) => OverlayUtils.showToast("取消收藏失败"));
+      }).catchError((e, s) {
+        OverlayUtils.showToast("取消收藏失败");
+      });
     } else {
-      /// 收藏网址
+      /// 收藏
       GlobeRepository.collectArticle(id).then((value) {
         GlobeStorage.saveCollect(id, id);
         OverlayUtils.showToast("收藏成功");

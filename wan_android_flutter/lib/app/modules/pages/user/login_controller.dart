@@ -24,7 +24,7 @@ class LoginController extends BaseController {
   bool get isLoginPage => _isLoginPage.value;
 
   final TextEditingController accountController =
-      TextEditingController(text: "pgtwo");
+      TextEditingController(text: "test9627");
   final TextEditingController passController =
       TextEditingController(text: "123456");
 

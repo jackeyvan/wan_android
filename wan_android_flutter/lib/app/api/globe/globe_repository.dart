@@ -111,7 +111,7 @@ class GlobeRepository {
           body: jsonEncode({
             "username": account,
             "password": password,
-            "repassword": rePassword
+            "rePassword": rePassword
           }));
     }
   }

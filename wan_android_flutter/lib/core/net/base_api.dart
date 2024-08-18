@@ -107,7 +107,11 @@ abstract class BaseApi {
     })
 
         /// 统一错误
-        .onError((error, _) => throw ApiError(origin: error.toString()));
+        .onError((error, _) {
+      error is ApiError
+          ? throw error
+          : throw ApiError(origin: error.toString());
+    });
   }
 
   /// Dio 网络下载

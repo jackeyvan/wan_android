@@ -104,13 +104,13 @@ Router _$V1ApiRouter(V1Api service) {
     service.fetchUserCollection,
   );
   router.add(
-    'GET',
+    'POST',
     r'/user/collect/<id>',
     service.collectArticle,
   );
   router.add(
-    'GET',
-    r'/user/un_collect/<id>',
+    'POST',
+    r'/user/uncollect/<id>',
     service.unCollectArticle,
   );
   return router;

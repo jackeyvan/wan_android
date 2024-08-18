@@ -38,7 +38,7 @@ class GlobeApiPaths {
   static const String collectArticle = "api/v1/user/collect";
 
   /// 取消收藏文章
-  static const String unCollectArticle = "api/v1/user/un_collect";
+  static const String unCollectArticle = "api/v1/user/uncollect";
 
   /// 获取收藏文章列表
   static const String collectList = "api/v1/user/collect/list";

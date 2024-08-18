@@ -127,13 +127,13 @@ class V1Api {
     return Response.ok(resp.body, headers: _handleHeader(resp.headers));
   }
 
-  @Route.get('/user/collect/<id>')
+  @Route.post('/user/collect/<id>')
   Future<Response> collectArticle(Request request, String id) async {
     final resp = await Repository.collectArticle(id, header: request.headers);
     return Response.ok(resp.body, headers: _handleHeader(resp.headers));
   }
 
-  @Route.get('/user/un_collect/<id>')
+  @Route.post('/user/uncollect/<id>')
   Future<Response> unCollectArticle(Request request, String id) async {
     final resp = await Repository.unCollectArticle(id, header: request.headers);
     return Response.ok(resp.body, headers: _handleHeader(resp.headers));
