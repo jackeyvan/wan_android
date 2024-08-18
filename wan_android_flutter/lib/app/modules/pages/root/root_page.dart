@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wan_android/app/api/globe/globe_repository.dart';
 import 'package:wan_android/app/api/pgyer/pgyer_repository.dart';
 import 'package:wan_android/app/const/styles.dart';
 import 'package:wan_android/app/modules/entity/user_entity.dart';
+import 'package:wan_android/app/modules/entity/user_info_entity.dart';
 import 'package:wan_android/app/modules/pages/home/home_page.dart';
 import 'package:wan_android/app/modules/pages/platform/platform_page.dart';
 import 'package:wan_android/app/modules/pages/project/project_page.dart';
@@ -15,6 +17,8 @@ import 'package:wan_android/core/utils/log_utils.dart';
 
 class RootController extends BaseController {
   final _currentBottomIndex = 0.obs;
+
+  final userInfo = UserInfoEntity().obs;
 
   final pageController = PageController();
 
@@ -40,7 +44,8 @@ class RootController extends BaseController {
 
   @override
   void onReady() {
-    // loadAppInfo();
+    loadAppInfo();
+    fetchUserInfo();
     super.onReady();
   }
 
@@ -58,6 +63,21 @@ class RootController extends BaseController {
   void onClose() {
     User.streamController.close();
     super.onClose();
+  }
+
+  /// 预加载一下用户信息，判断本地cookie是否过期，如果过期清除本地用户缓存
+  void fetchUserInfo() {
+    if (!User.isLogin() || GetPlatform.isWeb) {
+      return;
+    }
+
+    GlobeRepository.fetchUserInfo().then((user) {
+      if (user != null) {
+        userInfo.value = user;
+      }
+    }).catchError((e, s) {
+      LogUtils.e(e.toString());
+    });
   }
 }
 

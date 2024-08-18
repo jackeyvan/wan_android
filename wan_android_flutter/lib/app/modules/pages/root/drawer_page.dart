@@ -8,25 +8,28 @@ import 'package:wan_android/app/api/globe/globe_repository.dart';
 import 'package:wan_android/app/const/styles.dart';
 import 'package:wan_android/app/modules/entity/user_entity.dart';
 import 'package:wan_android/app/modules/entity/user_info_entity.dart';
+import 'package:wan_android/app/modules/pages/root/root_page.dart';
 import 'package:wan_android/app/routes/routes.dart';
 import 'package:wan_android/core/page/base/base_controller.dart';
 import 'package:wan_android/core/page/base/base_page.dart';
-import 'package:wan_android/core/utils/log_utils.dart';
 import 'package:wan_android/core/utils/overlay_utils.dart';
 
 class DrawerController extends BaseController {
   final user = User.getUser().obs;
-  final Rx<UserCoinInfo?> userCoininfo = UserCoinInfo().obs;
+
+  final rootController = Get.find<RootController>();
 
   StreamSubscription? subscription;
 
   String get userName => user.value?.username ?? "";
 
-  int get userLevel => userCoininfo.value?.level ?? 0;
+  UserInfoEntity get userInfo => rootController.userInfo.value;
 
-  int get coinCount => userCoininfo.value?.coinCount ?? 0;
+  int get userLevel => userInfo.coinInfo?.level ?? 0;
 
-  String get rank => userCoininfo.value?.rank ?? "0";
+  int get coinCount => userInfo.coinInfo?.coinCount ?? 0;
+
+  String get rank => userInfo.coinInfo?.rank ?? "0";
 
   void toLoginPage() {
     if (!isLogin()) Routes.toNamed(Routes.login);
@@ -36,11 +39,11 @@ class DrawerController extends BaseController {
   void onReady() {
     subscription = User.streamController.stream.listen((user) {
       this.user.value = user;
-      fetchUserInfo();
+      rootController.fetchUserInfo();
     });
 
     if (isLogin()) {
-      fetchUserInfo();
+      rootController.fetchUserInfo();
     }
   }
 
@@ -70,16 +73,6 @@ class DrawerController extends BaseController {
   }
 
   bool isLogin() => user.value != null;
-
-  void fetchUserInfo() {
-    GlobeRepository.fetchUserInfo().then((user) {
-      if (user != null) {
-        userCoininfo.value = user.coinInfo;
-      }
-    }).catchError((e, s) {
-      LogUtils.e(e.toString());
-    });
-  }
 }
 
 class DrawerPage extends BasePage<DrawerController> {
