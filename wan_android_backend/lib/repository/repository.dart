@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:wan_android_backend/db/hive_box.dart';
@@ -75,8 +77,7 @@ class Repository {
   static Future<Response> get(String url, bool force,
       {Map<String, String>? header}) async {
     /// 先从本地取
-    // final result = HiveBox.get(url);
-    final result = null;
+    final result = HiveBox.get(url);
 
     /// 本地没有拉取远程
     if (result == null) {
@@ -86,7 +87,12 @@ class Repository {
       if (force) {
         return _getCore(url, header);
       } else {
-        return Response(result, 200);
+        // print("Local result = " + result);
+        print(
+            "Local result =============================================================");
+        return Response(result, 200, headers: {
+          HttpHeaders.contentTypeHeader: 'application/json; charset=utf-8',
+        });
       }
     }
   }
@@ -105,7 +111,9 @@ class Repository {
     }
 
     return http.post(Uri.parse(url), headers: header).then((response) {
-      print(response.body);
+      // print("Post request result = " + response.body);
+      print(
+          "Post request =============================================================");
       return response;
     }).catchError((e, s) {
       print(e.toString());
@@ -116,7 +124,9 @@ class Repository {
   static Future<Response> _getCore(
       String url, Map<String, String>? header) async {
     return http.get(Uri.parse(url), headers: header).then((response) {
-      print(response.body);
+      // print("Get request result" + response.body);
+      print(
+          "Get request =============================================================");
       HiveBox.put(url, response.body);
       return response;
     }).catchError((e, s) {

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:wan_android/app/api/globe_api.dart';
+import 'package:wan_android/app/const/keys.dart';
 import 'package:wan_android/app/modules/entity/article_entity.dart';
 import 'package:wan_android/app/modules/entity/article_tab_entity.dart';
 import 'package:wan_android/app/modules/entity/banner_entity.dart';
@@ -10,12 +11,13 @@ import 'package:wan_android/app/modules/entity/score_rank_entity.dart';
 import 'package:wan_android/app/modules/entity/structure_entity.dart';
 import 'package:wan_android/app/modules/entity/user_entity.dart';
 import 'package:wan_android/app/modules/entity/user_info_entity.dart';
+import 'package:wan_android/core/init/storage.dart';
 import 'package:wan_android/core/net/cache/cache.dart';
 
 class GlobeApiPaths {
   /// 基础url
-  static const baseUrl = "https://wan-android-backend.globeapp.dev/";
-  // static const baseUrl = "http://0.0.0.0:8080/";
+  // static const baseUrl = "https://wan-android-backend.globeapp.dev/";
+  static const baseUrl = "http://0.0.0.0:8080/";
 
   /// 文章列表
   static const String articleList = "api/v1/article/list";
@@ -210,5 +212,62 @@ class GlobeRepository {
   static Future<dynamic> unCollectArticle(String id) {
     return _api.post("${GlobeApiPaths.unCollectArticle}/$id",
         cacheMode: CacheMode.remoteOnly);
+  }
+}
+
+/// =====================================================================================================================
+/// 本地存储封装，提供所有本地数据
+/// =====================================================================================================================
+class GlobeStorage {
+  ///  搜索历史记录
+  static List<String> readSearchHistory() {
+    final history = Storage.read<List>(Keys.searchHistory);
+    return (history ?? []).map((e) => e as String).toList();
+  }
+
+  /// 添加搜索历史记录
+  static void writeSearchHistory(String value) {
+    final history = readSearchHistory();
+    if (history.contains(value)) {
+      history.remove(value);
+    }
+    history.insert(0, value);
+    Storage.write(Keys.searchHistory, history);
+  }
+
+  ///  清空历史记录
+  static void clearSearchHistory() {
+    Storage.remove(Keys.searchHistory);
+  }
+
+  ///  本地动态收藏文章和网址
+  static void saveCollect(String key, String id) {
+    Storage.write(key, id);
+  }
+
+  /// 获取本地收藏状态
+  static String? readCollect(String key) {
+    return Storage.read<String>(key);
+  }
+
+  /// 取消收藏
+  static void removeCollect(String key) {
+    Storage.remove(key);
+  }
+
+  static String? readRememberAccount() {
+    return Storage.read(Keys.rememberAccount);
+  }
+
+  static void writeRememberAccount(String value) {
+    Storage.write(Keys.rememberAccount, value);
+  }
+
+  static String? readPasswordAccount() {
+    return Storage.read(Keys.rememberPassword);
+  }
+
+  static void writePasswordAccount(String value) {
+    Storage.write(Keys.rememberPassword, value);
   }
 }

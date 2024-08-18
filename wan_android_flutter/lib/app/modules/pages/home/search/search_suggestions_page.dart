@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wan_android/app/api/globe_repository.dart';
-import 'package:wan_android/app/api/wan_android_repository.dart';
 import 'package:wan_android/app/const/styles.dart';
 import 'package:wan_android/app/modules/entity/hot_key_entity.dart';
 import 'package:wan_android/core/page/base/base_controller.dart';
@@ -105,12 +104,12 @@ class SearchSuggestionsController extends BaseController {
   Future<List<HotKeyEntity>?> fetchHotKeywords() =>
       GlobeRepository.fetchHotKeywords();
 
-  List<String> readSearchHistory() => WanAndroidStorage.readSearchHistory();
+  List<String> readSearchHistory() => GlobeStorage.readSearchHistory();
 
   void clearHistory() {
     historyData.clear();
     update();
-    WanAndroidStorage.clearSearchHistory();
+    GlobeStorage.clearSearchHistory();
     OverlayUtils.showToast(Strings.clearSuccess.tr);
   }
 

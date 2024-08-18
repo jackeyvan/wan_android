@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wan_android/app/api/globe_repository.dart';
-import 'package:wan_android/app/api/wan_android_repository.dart';
 import 'package:wan_android/app/modules/entity/article_entity.dart';
 import 'package:wan_android/app/modules/widget/article_item_widget.dart';
 import 'package:wan_android/core/page/refresh/refresh_controller.dart';
@@ -18,7 +17,7 @@ class SearchResultPage extends GetRefreshPage<SearchResultController> {
   @override
   void dependencies() {
     Get.lazyPut(() => SearchResultController(query), tag: query);
-    WanAndroidStorage.writeSearchHistory(query);
+    GlobeStorage.writeSearchHistory(query);
   }
 
   @override

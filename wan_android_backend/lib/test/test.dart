@@ -1,14 +1,17 @@
-import 'dart:convert';
-
 import 'package:http/http.dart';
 
 void main() {
-  post(Uri.parse('http://0.0.0.0:8080/api/v1/user/login'),
-          body: jsonEncode({"username": "pgtwo", "password": "123456"}))
-      .then((result) {
+  get(Uri.parse('http://0.0.0.0:8080/api/v1/banner')).then((result) {
     print(result.headers);
     print(result.body);
   });
+
+  // post(Uri.parse('http://0.0.0.0:8080/api/v1/user/login'),
+  //         body: jsonEncode({"username": "pgtwo", "password": "123456"}))
+  //     .then((result) {
+  //   print(result.headers);
+  //   print(result.body);
+  // });
 
   // post(Uri.parse('http://0.0.0.0:8080/api/v1/user/register'),
   //     body: jsonEncode({

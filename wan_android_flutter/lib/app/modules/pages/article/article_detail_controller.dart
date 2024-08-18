@@ -2,7 +2,6 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wan_android/app/api/globe_repository.dart';
-import 'package:wan_android/app/api/wan_android_repository.dart';
 import 'package:wan_android/app/const/styles.dart';
 import 'package:wan_android/app/modules/base/scaffold_controller.dart';
 import 'package:wan_android/app/modules/entity/article_entity.dart';
@@ -47,7 +46,7 @@ class ArticleDetailController extends ScaffoldController<ArticleEntity> {
       webUrl = args.link ?? "";
 
       final id = (data?.id ?? 0).toString();
-      final result = WanAndroidStorage.readCollect(id);
+      final result = GlobeStorage.readCollect(id);
       if (isNotNullOrBlank(result)) {
         isCollected.value = true;
       }
@@ -93,13 +92,13 @@ class ArticleDetailController extends ScaffoldController<ArticleEntity> {
     if (isCollected.value) {
       /// 取消收藏
       GlobeRepository.unCollectArticle(id).then((value) {
-        WanAndroidStorage.removeCollect(id);
+        GlobeStorage.removeCollect(id);
         OverlayUtils.showToast("取消收藏成功");
       }).catchError((e, s) => OverlayUtils.showToast("取消收藏失败"));
     } else {
       /// 收藏网址
       GlobeRepository.collectArticle(id).then((value) {
-        WanAndroidStorage.saveCollect(id, id);
+        GlobeStorage.saveCollect(id, id);
         OverlayUtils.showToast("收藏成功");
       }).catchError((e, s) => OverlayUtils.showToast("收藏失败"));
     }

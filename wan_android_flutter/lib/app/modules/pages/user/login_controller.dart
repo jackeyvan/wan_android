@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wan_android/app/api/globe_repository.dart';
-import 'package:wan_android/app/api/wan_android_repository.dart';
 import 'package:wan_android/app/const/styles.dart';
 import 'package:wan_android/app/modules/entity/user_entity.dart';
 import 'package:wan_android/app/routes/routes.dart';
@@ -38,8 +37,8 @@ class LoginController extends BaseController {
 
   @override
   void onReady() {
-    final account = WanAndroidStorage.readRememberAccount();
-    final password = WanAndroidStorage.readPasswordAccount();
+    final account = GlobeStorage.readRememberAccount();
+    final password = GlobeStorage.readPasswordAccount();
 
     if (isNotNullOrBlank(account) && isNotNullOrBlank(password)) {
       accountController.text = account!;
@@ -56,8 +55,8 @@ class LoginController extends BaseController {
       OverlayUtils.showToast(Strings.accountOrPasswordIsNull.tr);
       return;
     } else {
-      WanAndroidStorage.writeRememberAccount(account);
-      WanAndroidStorage.writePasswordAccount(password);
+      GlobeStorage.writeRememberAccount(account);
+      GlobeStorage.writePasswordAccount(password);
     }
 
     if (isLoginPage) {
