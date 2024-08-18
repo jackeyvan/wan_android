@@ -24,7 +24,7 @@ class WanAndroidApi extends BaseApi {
     dio.interceptors.add(CacheInterceptor(
 
         /// 默认使用缓存，不需要使用缓存在接口里单独设置
-        defaultCacheMode: CacheMode.cacheFirstThenRemote,
+        defaultCacheMode: CacheMode.remoteOnly,
         defaultExpireTime: const Duration(days: 7)));
 
     /// Cookie持久化
@@ -69,8 +69,8 @@ class WanAndroidApi extends BaseApi {
 class ApiInterceptor extends InterceptorsWrapper {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    options.headers['version'] = "1.0.0";
-    options.headers['platform'] = "android";
+    // options.headers['version'] = "1.0.0";
+    // options.headers['platform'] = "android";
 
     super.onRequest(options, handler);
   }

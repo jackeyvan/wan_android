@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:wan_android/app/const/styles.dart';
 import 'package:wan_android/app/modules/pages/user/login_controller.dart';
 import 'package:wan_android/core/init/themes.dart';
 import 'package:wan_android/core/page/base/base_page.dart';
-import 'package:get/get.dart';
 
 class LoginPage extends BasePage<LoginController> {
   const LoginPage({super.key});

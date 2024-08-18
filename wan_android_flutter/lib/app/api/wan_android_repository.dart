@@ -1,12 +1,5 @@
-import 'package:get/get.dart';
-import 'package:wan_android/app/api/wan_android_api.dart';
 import 'package:wan_android/app/const/keys.dart';
-import 'package:wan_android/app/modules/entity/article_entity.dart';
-import 'package:wan_android/app/modules/entity/score_rank_entity.dart';
-import 'package:wan_android/app/modules/entity/user_entity.dart';
-import 'package:wan_android/app/modules/entity/user_info_entity.dart';
 import 'package:wan_android/core/init/storage.dart';
-import 'package:wan_android/core/net/cache/cache.dart';
 
 class WanAndroidApiPaths {
   /// 基础url
@@ -67,73 +60,7 @@ class WanAndroidApiPaths {
 /// =====================================================================================================================
 /// 接口封装，提供玩安卓所有远程接口
 /// =====================================================================================================================
-class WanAndroidRepository {
-  static final _api = Get.find<WanAndroidApi>();
-
-  /// 积分列表
-  static Future<ScoreListEntity?> fetchCoinList(int page) =>
-      _api.get<ScoreListEntity>("${WanAndroidApiPaths.coinList}$page/json",
-          cacheMode: CacheMode.remoteOnly);
-
-  /// 积分排行榜
-  static Future<ScoreListEntity?> fetchCoinRankList(int page) =>
-      _api.get<ScoreListEntity>("${WanAndroidApiPaths.coinRankList}$page/json");
-
-  /// 搜索结果
-  static Future<List<ArticleEntity>> fetchSearchResult(
-          String query, int page) =>
-      _api.post<ArticleListEntity>(
-          "${WanAndroidApiPaths.searchForKeyword}$page/json",
-          params: {'k': query}).then((e) => e?.datas ?? []);
-
-  /// 登录接口
-  static Future<User?> login(bool isLogin, String account, String password,
-      {String? rePassword}) {
-    if (isLogin) {
-      return _api.post<User>(WanAndroidApiPaths.login,
-          cacheMode: CacheMode.remoteOnly,
-          params: {"username": account, "password": password});
-    } else {
-      return _api.post<User>(WanAndroidApiPaths.register,
-          cacheMode: CacheMode.remoteOnly,
-          params: {
-            "username": account,
-            "password": password,
-            "repassword": rePassword
-          });
-    }
-  }
-
-  /// 退出登录
-  static Future logout() {
-    return _api.get(WanAndroidApiPaths.logout, cacheMode: CacheMode.remoteOnly);
-  }
-
-  /// 用户信息
-  static Future<UserInfoEntity?> fetchUserInfo() {
-    return _api.get<UserInfoEntity>(WanAndroidApiPaths.userinfo,
-        cacheMode: CacheMode.remoteOnly);
-  }
-
-  /// 用户收藏文章列表
-  static Future<ArticleListEntity?> fetchUserCollection(int page) {
-    return _api.get<ArticleListEntity>(
-        "${WanAndroidApiPaths.collectList}$page/json",
-        cacheMode: CacheMode.remoteOnly);
-  }
-
-  /// 收藏文章
-  static Future<dynamic> postCollectArticle(String id) {
-    return _api.post("${WanAndroidApiPaths.collectArticle}$id/json",
-        cacheMode: CacheMode.remoteOnly);
-  }
-
-  /// 取消收藏文章
-  static Future<dynamic> cancelCollectArticle(String id) {
-    return _api.post("${WanAndroidApiPaths.unCollectArticle}$id/json",
-        cacheMode: CacheMode.remoteOnly);
-  }
-}
+class WanAndroidRepository {}
 
 /// =====================================================================================================================
 /// 本地存储封装，提供所有本地数据
@@ -173,5 +100,21 @@ class WanAndroidStorage {
   /// 取消收藏
   static void removeCollect(String key) {
     Storage.remove(key);
+  }
+
+  static String? readRememberAccount() {
+    return Storage.read(Keys.rememberAccount);
+  }
+
+  static void writeRememberAccount(String value) {
+    Storage.write(Keys.rememberAccount, value);
+  }
+
+  static String? readPasswordAccount() {
+    return Storage.read(Keys.rememberPassword);
+  }
+
+  static void writePasswordAccount(String value) {
+    Storage.write(Keys.rememberPassword, value);
   }
 }

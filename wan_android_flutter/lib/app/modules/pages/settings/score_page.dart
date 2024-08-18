@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_android/app/api/wan_android_repository.dart';
+import 'package:wan_android/app/api/globe_repository.dart';
 import 'package:wan_android/app/const/styles.dart';
 import 'package:wan_android/app/modules/entity/score_rank_entity.dart';
 import 'package:wan_android/app/routes/routes.dart';
@@ -19,7 +19,7 @@ class ScoreController extends GetRefreshListController<ScoreEntity> {
 
   @override
   Future<List<ScoreEntity>> loadListData(int page, bool isRefresh) async {
-    return WanAndroidRepository.fetchCoinList(page)
+    return GlobeRepository.fetchCoinList(page)
         .then((value) => value?.datas ?? []);
   }
 }

@@ -4,13 +4,14 @@ import 'dart:math' as math;
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_android/app/api/wan_android_repository.dart';
+import 'package:wan_android/app/api/globe_repository.dart';
 import 'package:wan_android/app/const/styles.dart';
 import 'package:wan_android/app/modules/entity/user_entity.dart';
 import 'package:wan_android/app/modules/entity/user_info_entity.dart';
 import 'package:wan_android/app/routes/routes.dart';
 import 'package:wan_android/core/page/base/base_controller.dart';
 import 'package:wan_android/core/page/base/base_page.dart';
+import 'package:wan_android/core/utils/log_utils.dart';
 import 'package:wan_android/core/utils/overlay_utils.dart';
 
 class DrawerController extends BaseController {
@@ -56,7 +57,7 @@ class DrawerController extends BaseController {
         builder: (context) {
           return OverlayUtils.buildDialog(Strings.logoutConfirm.tr,
               onConfirm: () {
-            WanAndroidRepository.logout().then((_) {
+            GlobeRepository.logout().then((_) {
               User.clear();
               OverlayUtils.showToast(Strings.logoutSuccess.tr);
               Routes.back();
@@ -71,10 +72,12 @@ class DrawerController extends BaseController {
   bool isLogin() => user.value != null;
 
   void fetchUserInfo() {
-    WanAndroidRepository.fetchUserInfo().then((user) {
+    GlobeRepository.fetchUserInfo().then((user) {
       if (user != null) {
         userCoininfo.value = user.coinInfo;
       }
+    }).catchError((e, s) {
+      LogUtils.e(e.toString());
     });
   }
 }

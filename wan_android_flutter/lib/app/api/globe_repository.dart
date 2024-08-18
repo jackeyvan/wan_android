@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:wan_android/app/api/globe_api.dart';
 import 'package:wan_android/app/modules/entity/article_entity.dart';
@@ -13,6 +15,7 @@ import 'package:wan_android/core/net/cache/cache.dart';
 class GlobeApiPaths {
   /// 基础url
   static const baseUrl = "https://wan-android-backend.globeapp.dev/";
+  // static const baseUrl = "http://0.0.0.0:8080/";
 
   /// 文章列表
   static const String articleList = "api/v1/article/list";
@@ -30,7 +33,7 @@ class GlobeApiPaths {
   static const String register = "api/v1/user/register";
 
   /// 退出登录
-  static const String logout = "api/v1/user/logout/json";
+  static const String logout = "api/v1/user/logout";
 
   /// 项目分类
   static const String projectTabs = "api/v1/project/tabs";
@@ -39,19 +42,19 @@ class GlobeApiPaths {
   static const String projectList = "api/v1/project/list";
 
   /// 搜索
-  static const String searchForKeyword = "api/v1/article/query/";
+  static const String searchForKeyword = "api/v1/search";
 
   /// 获取搜索热词
   static const String hotKeywords = "api/v1/hotkey";
 
   /// 点击收藏文章
-  static const String collectArticle = "api/v1/lg/collect/";
+  static const String collectArticle = "api/v1/user/collect";
 
   /// 取消收藏文章
-  static const String unCollectArticle = "api/v1/lg/uncollect_originId/";
+  static const String unCollectArticle = "api/v1/user/un_collect";
 
   /// 获取收藏文章列表
-  static const String collectList = "api/v1/lg/collect/list/";
+  static const String collectList = "api/v1/user/collect/list";
 
   /// 公众号
   static const String wxArticleTab = "api/v1/platform/tabs";
@@ -69,13 +72,13 @@ class GlobeApiPaths {
   static const String naviList = "api/v1/navi/list";
 
   /// 用户信息
-  static const String userinfo = "api/v1/user/lg/userinfo/json";
+  static const String userinfo = "api/v1/user/info";
 
   /// 个人积分列表
-  static const String coinList = "api/v1/lg/coin/list/";
+  static const String coinList = "api/v1/user/points";
 
   /// 积分排行榜
-  static const String coinRankList = "api/v1/coin/rank/";
+  static const String coinRankList = "api/v1/point/rank";
 }
 
 /// =====================================================================================================================
@@ -132,12 +135,12 @@ class GlobeRepository {
 
   /// 积分列表
   static Future<ScoreListEntity?> fetchCoinList(int page) =>
-      _api.get<ScoreListEntity>("${GlobeApiPaths.coinList}$page/json",
+      _api.get<ScoreListEntity>("${GlobeApiPaths.coinList}/$page",
           cacheMode: CacheMode.remoteOnly);
 
   /// 积分排行榜
   static Future<ScoreListEntity?> fetchCoinRankList(int page) =>
-      _api.get<ScoreListEntity>("${GlobeApiPaths.coinRankList}$page/json");
+      _api.get<ScoreListEntity>("${GlobeApiPaths.coinRankList}/$page");
 
   /// 搜索热词
   static Future<List<HotKeyEntity>?> fetchHotKeywords() async {
@@ -157,9 +160,10 @@ class GlobeRepository {
   /// 搜索结果
   static Future<List<ArticleEntity>> fetchSearchResult(
           String query, int page) =>
-      _api.post<ArticleListEntity>(
-          "${GlobeApiPaths.searchForKeyword}$page/json",
-          params: {'k': query}).then((e) => e?.datas ?? []);
+      _api
+          .post<ArticleListEntity>("${GlobeApiPaths.searchForKeyword}/$page",
+              body: jsonEncode({"query": query}))
+          .then((e) => e?.datas ?? []);
 
   /// 登录接口
   static Future<User?> login(bool isLogin, String account, String password,
@@ -167,15 +171,15 @@ class GlobeRepository {
     if (isLogin) {
       return _api.post<User>(GlobeApiPaths.login,
           cacheMode: CacheMode.remoteOnly,
-          params: {"username": account, "password": password});
+          body: jsonEncode({"username": account, "password": password}));
     } else {
       return _api.post<User>(GlobeApiPaths.register,
           cacheMode: CacheMode.remoteOnly,
-          params: {
+          body: jsonEncode({
             "username": account,
             "password": password,
             "repassword": rePassword
-          });
+          }));
     }
   }
 
@@ -192,19 +196,19 @@ class GlobeRepository {
 
   /// 用户收藏文章列表
   static Future<ArticleListEntity?> fetchUserCollection(int page) {
-    return _api.get<ArticleListEntity>("${GlobeApiPaths.collectList}$page/json",
+    return _api.get<ArticleListEntity>("${GlobeApiPaths.collectList}/$page",
         cacheMode: CacheMode.remoteOnly);
   }
 
   /// 收藏文章
-  static Future<dynamic> postCollectArticle(String id) {
-    return _api.post("${GlobeApiPaths.collectArticle}$id/json",
+  static Future<dynamic> collectArticle(String id) {
+    return _api.post("${GlobeApiPaths.collectArticle}/$id",
         cacheMode: CacheMode.remoteOnly);
   }
 
   /// 取消收藏文章
-  static Future<dynamic> cancelCollectArticle(String id) {
-    return _api.post("${GlobeApiPaths.unCollectArticle}$id/json",
+  static Future<dynamic> unCollectArticle(String id) {
+    return _api.post("${GlobeApiPaths.unCollectArticle}/$id",
         cacheMode: CacheMode.remoteOnly);
   }
 }

@@ -3,10 +3,8 @@ import 'dart:io';
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart';
 import 'package:wan_android_backend/db/hive_box.dart';
-import 'package:wan_android_backend/route/middleware.dart';
 import 'package:wan_android_backend/route/route_handler.dart';
 import 'package:wan_android_backend/route/shelf_cors.dart';
-import 'package:wan_android_backend/schedule/schedule.dart';
 
 void main(List<String> args) async {
   print('Server run start.');
@@ -15,11 +13,11 @@ void main(List<String> args) async {
   HiveBox.init();
 
   /// 调度
-  Schedule().start();
+  // Schedule().start();
 
   final handler = Pipeline()
       .addMiddleware(logRequests())
-      .addMiddleware(rejectBadRequests())
+      // .addMiddleware(rejectBadRequests())
       .addMiddleware(corsMiddleware())
       .addHandler(RouteHandler().router.call);
 

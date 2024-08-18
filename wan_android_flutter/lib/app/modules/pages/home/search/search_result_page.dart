@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:wan_android/app/api/globe_repository.dart';
 import 'package:wan_android/app/api/wan_android_repository.dart';
 import 'package:wan_android/app/modules/entity/article_entity.dart';
 import 'package:wan_android/app/modules/widget/article_item_widget.dart';
 import 'package:wan_android/core/page/refresh/refresh_controller.dart';
 import 'package:wan_android/core/page/refresh/refresh_page.dart';
-import 'package:get/get.dart';
 
 class SearchResultPage extends GetRefreshPage<SearchResultController> {
   final String query;
@@ -34,6 +35,6 @@ class SearchResultController extends GetRefreshListController<ArticleEntity> {
 
   @override
   Future<List<ArticleEntity>> loadListData(int page, bool isRefresh) {
-    return WanAndroidRepository.fetchSearchResult(query, page);
+    return GlobeRepository.fetchSearchResult(query, page);
   }
 }

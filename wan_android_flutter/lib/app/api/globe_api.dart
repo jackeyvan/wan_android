@@ -25,7 +25,7 @@ class GlobeApi extends BaseApi {
     dio.interceptors.add(CacheInterceptor(
 
         /// 默认使用缓存，不需要使用缓存在接口里单独设置
-        defaultCacheMode: CacheMode.cacheFirstThenRemote,
+        defaultCacheMode: CacheMode.remoteOnly,
         defaultExpireTime: const Duration(days: 7)));
 
     /// Cookie持久化

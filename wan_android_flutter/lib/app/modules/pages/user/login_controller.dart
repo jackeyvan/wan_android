@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wan_android/app/api/globe_repository.dart';
 import 'package:wan_android/app/api/wan_android_repository.dart';
 import 'package:wan_android/app/const/styles.dart';
 import 'package:wan_android/app/modules/entity/user_entity.dart';
@@ -35,6 +36,17 @@ class LoginController extends BaseController {
   String get toLoginButtonTips =>
       isLoginPage ? Strings.register.tr : Strings.login.tr;
 
+  @override
+  void onReady() {
+    final account = WanAndroidStorage.readRememberAccount();
+    final password = WanAndroidStorage.readPasswordAccount();
+
+    if (isNotNullOrBlank(account) && isNotNullOrBlank(password)) {
+      accountController.text = account!;
+      passController.text = password!;
+    }
+  }
+
   /// 登录或者注册
   void toLogin() {
     final account = accountController.text;
@@ -43,11 +55,14 @@ class LoginController extends BaseController {
     if (isNullOrBlank(account) || isNullOrBlank(password)) {
       OverlayUtils.showToast(Strings.accountOrPasswordIsNull.tr);
       return;
+    } else {
+      WanAndroidStorage.writeRememberAccount(account);
+      WanAndroidStorage.writePasswordAccount(password);
     }
 
     if (isLoginPage) {
       OverlayUtils.showOverlay(
-              () => WanAndroidRepository.login(true, account, password))
+              () => GlobeRepository.login(true, account, password))
           .then((value) => handleResult(value, Strings.loginSuccess.tr))
           .catchError((error, _) => handleError(error));
     } else {
@@ -58,7 +73,7 @@ class LoginController extends BaseController {
         return;
       }
 
-      OverlayUtils.showOverlay(() => WanAndroidRepository.login(
+      OverlayUtils.showOverlay(() => GlobeRepository.login(
               false, account, password, rePassword: rePassword))
           .then((value) => handleResult(value, Strings.registerSuccess.tr))
           .catchError((error, _) => handleError(error));

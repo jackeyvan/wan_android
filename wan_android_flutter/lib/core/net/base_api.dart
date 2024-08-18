@@ -55,6 +55,7 @@ abstract class BaseApi {
     Map<String, dynamic>? params,
     CacheMode? cacheMode,
     Duration? cacheExpire,
+    Object? body,
   }) =>
       _request<T>(
           url: url,
@@ -62,6 +63,7 @@ abstract class BaseApi {
           params: params,
           options: options,
           cacheMode: cacheMode,
+          body: body,
           cacheExpire: cacheExpire);
 
   /// 底层封装的Dio请求
@@ -72,6 +74,7 @@ abstract class BaseApi {
     Options? options,
     CacheMode? cacheMode,
     Duration? cacheExpire,
+    Object? body,
   }) {
     options ??= Options(extra: {});
 
@@ -87,7 +90,8 @@ abstract class BaseApi {
     if (method == Method.get) {
       future = _dio.get(url, queryParameters: params, options: options);
     } else {
-      future = _dio.post(url, queryParameters: params, options: options);
+      future =
+          _dio.post(url, queryParameters: params, options: options, data: body);
     }
     return future
 

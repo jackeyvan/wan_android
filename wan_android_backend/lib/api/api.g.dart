@@ -60,8 +60,58 @@ Router _$V1ApiRouter(V1Api service) {
   );
   router.add(
     'GET',
+    r'/point/rank/<page>',
+    service.fetchPointRank,
+  );
+  router.add(
+    'GET',
     r'/hotkey',
     service.fetchHotKeywords,
+  );
+  router.add(
+    'POST',
+    r'/search/<page>',
+    service.fetchSearchResult,
+  );
+  router.add(
+    'POST',
+    r'/user/login',
+    service.login,
+  );
+  router.add(
+    'GET',
+    r'/user/logout',
+    service.logout,
+  );
+  router.add(
+    'POST',
+    r'/user/register',
+    service.register,
+  );
+  router.add(
+    'GET',
+    r'/user/points/<page>',
+    service.fetchCoinList,
+  );
+  router.add(
+    'GET',
+    r'/user/info',
+    service.fetchUserInfo,
+  );
+  router.add(
+    'GET',
+    r'/user/collect/list/<page>',
+    service.fetchUserCollection,
+  );
+  router.add(
+    'GET',
+    r'/user/collect/<id>',
+    service.collectArticle,
+  );
+  router.add(
+    'GET',
+    r'/user/un_collect/<id>',
+    service.unCollectArticle,
   );
   return router;
 }
