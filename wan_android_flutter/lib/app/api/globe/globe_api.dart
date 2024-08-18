@@ -25,7 +25,7 @@ class GlobeApi extends BaseApi {
     /// 缓存拦截器
     dio.interceptors.add(CacheInterceptor(
 
-        /// 默认使用缓存，不需要使用缓存在接口里单独设置
+        /// 默认不缓存，需要使用缓存在接口里单独设置
         defaultCacheMode: CacheMode.remoteOnly,
         defaultExpireTime: const Duration(days: 7)));
 
