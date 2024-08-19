@@ -29,7 +29,7 @@ class PlatformTabController extends BaseTabController<ArticleTabEntity> {
 class PlatformController extends GetRefreshListController<ArticleEntity> {
   final int? id;
 
-  PlatformController({this.id}) : super(initPage: 3);
+  PlatformController({this.id}) : super(initPage: 1);
 
   @override
   Future<List<ArticleEntity>> loadListData(int page, bool isRefresh) {

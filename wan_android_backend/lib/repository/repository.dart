@@ -110,7 +110,7 @@ class Repository {
     }
 
     return http.post(Uri.parse(url), headers: header).then((response) {
-      // print("Post request result = " + response.body);
+      print("Post request result = " + response.body);
       print("Post request ===== $url");
       return response;
     }).catchError((e, s) {
@@ -122,7 +122,7 @@ class Repository {
   static Future<Response> _getCore(
       String url, Map<String, String>? header) async {
     return http.get(Uri.parse(url), headers: header).then((response) {
-      // print("Get request result" + response.body);
+      print("Get request result" + response.body);
       print("Get request ===== $url");
       HiveBox.put(url, response.body);
       return response;
