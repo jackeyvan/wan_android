@@ -38,7 +38,9 @@
 
 ### 页面展示
 
+#### 视频
 
+https://github.com/user-attachments/assets/42458f1b-178c-49f1-836c-c0d21a514aca
 
 #### 图片
 
@@ -47,6 +49,3 @@
 | ![](screenshot/home_light.png)  | ![](screenshot/home_dark.png)     | ![](screenshot/project.png)     |
 | ![](screenshot/structure.png)   | ![](screenshot/platform.png)      | ![](screenshot/theme.png)       |
 
-#### 视频
-
-我是视频
