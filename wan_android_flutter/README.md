@@ -40,7 +40,7 @@
 
 #### 视频
 
-<video src="./screenshot/screen_record.mp4"  poster="./screenshot/home_light.png" width=auto height=auto controls="controls"></video>
+<video src="./screenshot/screen_record.mp4"  poster="./screenshot/home_light.png" controls="controls"></video>
 
 #### 图片
 
