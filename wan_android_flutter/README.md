@@ -5,9 +5,11 @@
 玩安卓Flutter版本，目前支持Web、H5、Android、iOS四个客户端。Web和H5端因为玩安卓的Api不支持跨域和`Flutter Web SDK`
 不支持`Set Cookie`，所以只能阉割掉用户相关的功能。Android和iOS端功能正常。
 
-### [在线体验](https://xuelongqy.github.io/flutter_easy_refresh/)
+#### [在线体验](https://jackeyvan.github.io/wan_android/)
 
-### [Android版本](https://xuelongqy.github.io/flutter_easy_refresh/)
+#### [APK下载](https://xuelongqy.github.io/flutter_easy_refresh/)
+
+#### [Dart后端服务](https://github.com/jackeyvan/wan_android/tree/master/wan_android_backend)
 
 ### 功能特点
 
@@ -32,7 +34,7 @@
 ### 数据来源
 
 - [玩安卓](https://www.wanandroid.com/api)
-- [wan_android_backend](https://www.wanandroid.com/api)
+- [wan_android_backend](https://github.com/jackeyvan/wan_android/tree/master/wan_android_backend)
 
 ### 页面展示
 
