@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:wan_android_backend/repository/repository.dart';
 
@@ -19,6 +18,8 @@ class WanResponse {
 
 /// 调度
 class Schedule {
+  final forceRemote = true;
+
   Timer? timer;
 
   /// 默认爬取的页树木
@@ -34,96 +35,110 @@ class Schedule {
   }
 
   /// 后台加载数据
-  void fetchWanAndroidApi() {
-    final forceRemote = true;
+  void fetchWanAndroidApi() async {
+    /// 首页Banner
+    Future.delayed(
+        Duration(minutes: 1), () => Repository.fetchBanner(force: forceRemote));
 
-    Repository.fetchBanner(force: true);
+    /// 首页置顶文章
+    Future.delayed(Duration(minutes: 2),
+        () => Repository.fetchTopArticle(force: forceRemote));
 
-    sleep(Duration(minutes: 1));
-
-    Repository.fetchTopArticle(force: true);
-
-    sleep(Duration(minutes: 1));
-
-    /// 首页文章
-    for (var page = 0; page <= prePage; page++) {
-      Repository.fetchHomePageArticle("$page", force: true);
-      sleep(Duration(seconds: 10));
-    }
-
-    sleep(Duration(minutes: 10));
+    /// 首页热门文章
+    Future.delayed(Duration(minutes: 5), () {
+      for (var page = 0; page <= prePage; page++) {
+        Future.delayed(Duration(seconds: (page + 1) * 10),
+            () => Repository.fetchHomePageArticle("$page", force: forceRemote));
+      }
+    });
 
     /// 公众号
-    Repository.fetchPlatformTabs(force: forceRemote).then((value) {
-      final result = WanResponse.fromJson(jsonDecode(value.body));
-      if (result.success) {
-        (result.data as List).map((e) {
-          for (var page = 1; page <= prePage; page++) {
-            Repository.fetchPlatformList("${e['id']}", "$page",
-                force: forceRemote);
-            sleep(Duration(seconds: 10));
-          }
-        }).toList();
-      }
-    }).catchError((e, s) {
-      print(e.toString());
+    Future.delayed(Duration(minutes: 10), () {
+      Repository.fetchPlatformTabs(force: forceRemote).then((value) {
+        handleFutureResult(type: 1, body: value.body, initPage: 1, tag: "id");
+      }).catchError((e, s) {
+        print(e.toString());
+      });
     });
-
-    sleep(Duration(minutes: 10));
 
     /// 项目
-    Repository.fetchProjectTabs(force: forceRemote).then((value) {
-      final result = WanResponse.fromJson(jsonDecode(value.body));
-      if (result.success) {
-        (result.data as List).map((e) {
-          for (var page = 1; page <= prePage; page++) {
-            Repository.fetchProjectList("${e['id']}", "$page",
-                force: forceRemote);
-            sleep(Duration(seconds: 10));
-          }
-        }).toList();
-      }
-    }).catchError((e, s) {
-      print(e.toString());
+    Future.delayed(Duration(minutes: 20), () {
+      Repository.fetchProjectTabs(force: forceRemote).then((value) {
+        handleFutureResult(type: 2, initPage: 1, body: value.body, tag: "id");
+      }).catchError((e, s) {
+        print(e.toString());
+      });
     });
-
-    sleep(Duration(minutes: 10));
 
     /// 导航
-    Repository.fetchNaviList(force: forceRemote);
-
-    sleep(Duration(minutes: 1));
+    Future.delayed(Duration(minutes: 30),
+        () => Repository.fetchNaviList(force: forceRemote));
 
     /// 体系数据
-    Repository.fetchTreeList(force: forceRemote).then((value) {
-      final result = WanResponse.fromJson(jsonDecode(value.body));
-      if (result.success) {
-        (result.data as List).map((e) {
-          (e["children"] as List).map((child) {
-            Repository.fetchTreeDetailList("${child['id']}", "0",
-                force: forceRemote);
-            sleep(Duration(seconds: 10));
-          }).toList();
-        }).toList();
-      }
-    }).catchError((e, s) {
-      print(e.toString());
+    Future.delayed(Duration(minutes: 40), () {
+      Repository.fetchTreeList(force: forceRemote).then((value) {
+        final result = WanResponse.fromJson(jsonDecode(value.body));
+        if (result.success) {
+          final data = result.data as List;
+          data.forEach((e) {
+            Future.delayed(Duration(seconds: (data.indexOf(e) + 1) * 10), () {
+              final children = e["children"] as List;
+              children.forEach((child) {
+                Future.delayed(
+                    Duration(seconds: (children.indexOf(child) + 1) * 10),
+                    () => Repository.fetchTreeDetailList("${child['id']}", "0",
+                        force: forceRemote));
+              });
+            });
+          });
+        }
+      }).catchError((e, s) {
+        print(e.toString());
+      });
     });
-
-    sleep(Duration(minutes: 10));
 
     /// 搜索，并根据热搜词
-    Repository.fetchHotKeywords(force: forceRemote).then((value) {
-      final result = WanResponse.fromJson(jsonDecode(value.body));
-
-      if (result.success) {
-        (result.data as List).map((e) {
-          Repository.fetchSearchResult(e['name'], "0");
-          sleep(Duration(seconds: 10));
-        }).toList();
-      }
-    }).catchError((e, s) {
-      print(e.toString());
+    Future.delayed(Duration(minutes: 50), () {
+      Repository.fetchHotKeywords(force: forceRemote).then((value) {
+        final result = WanResponse.fromJson(jsonDecode(value.body));
+        if (result.success) {
+          final data = result.data as List;
+          data.forEach((e) {
+            Future.delayed(Duration(seconds: (data.indexOf(e) + 1) * 10),
+                () => Repository.fetchSearchResult(e['name'], "0"));
+          });
+        }
+      }).catchError((e, s) {
+        print(e.toString());
+      });
     });
+  }
+
+  /// 统一处理结果
+  void handleFutureResult({
+    required int type,
+    required int initPage,
+    required String body,
+    required String tag,
+  }) {
+    final result = WanResponse.fromJson(jsonDecode(body));
+    if (result.success) {
+      final data = result.data as List;
+      data.forEach((e) {
+        Future.delayed(Duration(seconds: (data.indexOf(e) + 1) * 10), () {
+          for (var page = initPage; page <= prePage; page++) {
+            Future.delayed(Duration(seconds: page * 10), () {
+              if (type == 1) {
+                Repository.fetchPlatformList("${e[tag]}", "$page",
+                    force: forceRemote);
+              } else if (type == 2) {
+                Repository.fetchProjectList("${e[tag]}", "$page",
+                    force: forceRemote);
+              }
+            });
+          }
+        });
+      });
+    }
   }
 }
