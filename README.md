@@ -40,7 +40,7 @@
 
 #### 视频
 
-
+https://github.com/jackeyvan/wan_android/blob/master/screenshot/screen_record.mov
 
 #### 图片
 
