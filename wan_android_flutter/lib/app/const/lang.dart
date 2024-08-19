@@ -67,6 +67,9 @@ const zhCN = {
   'collection': '收藏',
   'myCollection': '我的收藏',
   'rank': '排行榜',
+  'settingLevel': '等级',
+  'settingPoint': '积分',
+  'settingRank': '排行',
 };
 
 const enUS = {
@@ -107,4 +110,7 @@ const enUS = {
   'collection': 'Collection',
   'myCollection': 'My Collection',
   'rank': 'Rank',
+  'settingLevel': 'Level',
+  'settingPoint': 'Point',
+  'settingRank': 'Rank',
 };

@@ -40,6 +40,12 @@
 
 #### 视频
 
+
+```HTML
+<video src="./screenshot/screen_record.mp4" controls="controls" />
+```
+
+
 #### 图片
 
 | ![](./screenshot/drawer_blue.png) | ![](./screenshot/drawer_yellow.png) | ![](./screenshot/drawer_dark.png) |

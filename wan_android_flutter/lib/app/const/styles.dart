@@ -41,6 +41,9 @@ class Strings {
   static const String rePassword = "rePassword";
   static const String collection = "collection";
   static const String myCollection = "myCollection";
+  static const String settingLevel = "settingLevel";
+  static const String settingPoint = "settingPoint";
+  static const String settingRank = "settingPoint";
 
   static const lagerTextSize = 30.0;
   static const bigTextSize = 23.0;

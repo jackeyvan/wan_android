@@ -118,9 +118,12 @@ class DrawerPage extends BasePage<DrawerController> {
                     ? Obx(() => Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Text("等级: ${controller.userLevel}"),
-                            Text("积分: ${controller.coinCount}"),
-                            Text("排行: ${controller.rank}"),
+                            Text(
+                                "${Strings.settingLevel.tr}: ${controller.userLevel}"),
+                            Text(
+                                "${Strings.settingPoint.tr}: ${controller.coinCount}"),
+                            Text(
+                                "${Strings.settingRank.tr}: ${controller.rank}"),
                           ],
                         ))
                     : const SizedBox.shrink()),
