@@ -4,7 +4,7 @@ import 'package:wan_android_backend/api/api.dart';
 
 class RouteHandler {
   Response _rootHandler(Request req) {
-    return Response.ok('Hello, World!\n');
+    return Response.ok('Dart server run success.');
   }
 
   /// Api Route
