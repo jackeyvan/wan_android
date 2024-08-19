@@ -40,7 +40,7 @@
 
 #### 视频
 
-<video src="./screenshot/screen_record.mp4"  poster="./screenshot/home_light.png" controls="controls"></video>
+<video src="https://github.com/jackeyvan/wan_android/blob/master/screenshot/screen_record.mp4"  poster="https://github.com/jackeyvan/wan_android/blob/master/screenshot/home_light.png" controls="controls"></video>
 
 #### 图片
 
