@@ -38,9 +38,7 @@
 
 ### 页面展示
 
-#### 视频
 
-https://github.com/jackeyvan/wan_android/blob/master/screenshot/screen_record.mov
 
 #### 图片
 
@@ -49,3 +47,6 @@ https://github.com/jackeyvan/wan_android/blob/master/screenshot/screen_record.mo
 | ![](screenshot/home_light.png)  | ![](screenshot/home_dark.png)     | ![](screenshot/project.png)     |
 | ![](screenshot/structure.png)   | ![](screenshot/platform.png)      | ![](screenshot/theme.png)       |
 
+#### 视频
+
+我是视频
