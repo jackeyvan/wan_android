@@ -20,7 +20,7 @@ class GlobeApi extends BaseApi {
   void init(Dio dio) {
     dio.options.baseUrl = GlobeApiPaths.baseUrl;
 
-    dio.options.connectTimeout = const Duration(seconds: 15);
+    dio.options.connectTimeout = const Duration(seconds: 60);
 
     /// 缓存拦截器
     dio.interceptors.add(CacheInterceptor(

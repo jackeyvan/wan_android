@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:wan_android/app/const/styles.dart';
 import 'package:wan_android/app/modules/entity/article_entity.dart';
 import 'package:wan_android/app/modules/widget/article_item_widget.dart';
 import 'package:wan_android/app/modules/widget/carousel/carousel_slider.dart';
 import 'package:wan_android/app/routes/routes.dart';
 import 'package:wan_android/core/page/refresh/refresh_page.dart';
-import 'package:get/get.dart';
 
 import 'home_controller.dart';
 import 'search/search_delegate_page.dart';
