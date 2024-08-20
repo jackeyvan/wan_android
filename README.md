@@ -7,7 +7,7 @@
 
 #### [在线体验](https://jackeyvan.github.io/wan_android/)
 
-#### [APK下载](https://xuelongqy.github.io/flutter_easy_refresh/)
+#### [APK下载](https://github.com/jackeyvan/wan_android/releases/download/1.0.0/app-armeabi-v7a-release.apk)
 
 #### [Dart后端服务](https://github.com/jackeyvan/wan_android/tree/master/wan_android_backend)
 
